@@ -485,8 +485,8 @@ class Agent(object):
                 for j, value_j in enumerate(self.args.adj[i]):
                     if value_j == 1:  # agent j is a neighbor of agent i
                         KL_loss += self.KLDivLoss(F.log_softmax(cognition_list[i], dim=1), F.softmax(cognition_list[j], dim=1))
-                        print(F.log_softmax(cognition_list[i], dim=1))
-                        print(self.KLDivLoss(F.log_softmax(cognition_list[i], dim=1), F.softmax(cognition_list[j], dim=1)))
+                        # print(F.log_softmax(cognition_list[i], dim=1))
+                        # print(self.KLDivLoss(F.log_softmax(cognition_list[i], dim=1), F.softmax(cognition_list[j], dim=1)))
                         # print(KL_loss.shape)
                         # print(cognition_list[i].shape)
                         # KLDivLoss: the input given is expected to contain log-probabilities, target is probabilities

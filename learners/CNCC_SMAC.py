@@ -122,7 +122,7 @@ class CNCC_SMAC_Learner:
             obs_hats.append(obs_hat)
             mac_out.append(agent_outs)
         mac_out = th.stack(mac_out, dim=1)  # Concat over time
-        c_hats = th.stack(c_hats, dim=1)[:,:-1]  # Concat over time
+        c_hats = th.stack(c_hats, dim=1)  # Concat over time
         # b, t, a, e
         obs_hats = th.stack(obs_hats, dim=1)  # Concat over time
 
@@ -191,8 +191,10 @@ class CNCC_SMAC_Learner:
             if t_env > self.start_anneal_time and self.args.env_args['reward_sparse'] and self.args.anneal_intrin:
                 intrinsic = max(1 - (
                         t_env - self.start_anneal_time) / self.args.anneal_speed, 0) * intrinsic
-
-            rewards_new = rewards + intrinsic  # +intrinsic
+            if self.use_int:
+                rewards_new = rewards + intrinsic  # +intrinsic
+            else:
+                rewards_new = rewards
             if getattr(self.args, 'q_lambda', False):
                 qvals = th.gather(target_mac_out, 3, batch["actions"]).squeeze(3)
                 qvals = self.target_mixer(qvals, batch["state"])
@@ -210,8 +212,8 @@ class CNCC_SMAC_Learner:
             for j in range(i+1, a):
                 dist_p = Categorical(F.softmax(c_hats[..., i, :], dim=-1))
                 dist_q = Categorical(F.softmax(c_hats[..., j, :], dim=-1))
-                kl_div = torch.distributions.kl.kl_divergence(dist_p, dist_q)
-                # print(kl_div.shape)
+
+                kl_div = torch.distributions.kl.kl_divergence(dist_p, dist_q).sum()
                 
                 kl_div_matrix[..., i, j] = kl_div
                 kl_div_matrix[..., j, i] = kl_div
@@ -222,7 +224,7 @@ class CNCC_SMAC_Learner:
         # print(causal_adj[0][0])
         kl_div_matrix = kl_div_matrix.to(self.device)
         kl_div_matrix = kl_div_matrix * causal_adj
-        kl_loss = kl_div_matrix.mean(dim=(0,1,2,3))
+        kl_loss = kl_div_matrix.mean(dim=(0,1,2,3)) / (a*a*a)
         # reconstruct loss
         obs = batch['obs']
         rec_loss = nn.MSELoss(reduction='mean')(obs, obs_hats)
@@ -243,7 +245,7 @@ class CNCC_SMAC_Learner:
             masked_td_error = masked_td_error.sum(1) * per_weight
 
         loss = L_td = masked_td_error.sum() / mask.sum()
-        print(loss, kl_loss, rec_loss)
+        print(loss, kl_loss)
         loss = loss + self.args.alpha1 * kl_loss + self.args.alpha2 * rec_loss
         # Optimise
         self.optimiser.zero_grad()

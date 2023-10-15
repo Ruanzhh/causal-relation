@@ -16,14 +16,14 @@ class NNCCAgent(nn.Module):
         self.fc1 = nn.Linear(input_shape, args.rnn_hidden_dim)
         self.rnn = nn.GRUCell(args.rnn_hidden_dim, args.rnn_hidden_dim)
         
-        self.fc_cog_mean = nn.Linear(args.rnn_hidden_dim, args.cog_hidden_dim) 
-        self.fc_cog_logstd = nn.Linear(args.rnn_hidden_dim, args.cog_hidden_dim)
+        self.fc_cog_mean = nn.Linear(args.rnn_hidden_dim, args.rnn_hidden_dim) 
+        self.fc_cog_logstd = nn.Linear(args.rnn_hidden_dim, args.rnn_hidden_dim)
         
-        self.fc_decoder1 = nn.Linear(args.cog_hidden_dim, args.rnn_hidden_dim)
+        self.fc_decoder1 = nn.Linear(args.rnn_hidden_dim, args.rnn_hidden_dim)
         self.fc_decoder2 = nn.Linear(args.rnn_hidden_dim, args.rnn_hidden_dim)
         self.fc_decoder3 = nn.Linear(args.rnn_hidden_dim, args.obs_dim)
         
-        self.fc2 = nn.Linear(args.rnn_hidden_dim + args.cog_hidden_dim, args.n_actions)
+        self.fc2 = nn.Linear(args.rnn_hidden_dim * 2, args.n_actions)
 
         if getattr(args, "use_layer_norm", False):
             self.layer_norm = LayerNorm(args.rnn_hidden_dim)
