@@ -1,0 +1,296 @@
+[DEBUG 13:09:36] git.util Failed checking if running in CYGWIN due to: FileNotFoundError(2, 'No such file or directory')
+[DEBUG 13:09:36] git.cmd Popen(['git', 'diff', '--cached', '--abbrev=40', '--full-index', '--raw'], cwd=/home/ruanzhonghai/work/causal/causal-relation, universal_newlines=False, shell=None, istream=None)
+[DEBUG 13:09:36] git.cmd Popen(['git', 'diff', '--abbrev=40', '--full-index', '--raw'], cwd=/home/ruanzhonghai/work/causal/causal-relation, universal_newlines=False, shell=None, istream=None)
+[DEBUG 13:09:36] git.cmd Popen(['git', 'cat-file', '--batch-check'], cwd=/home/ruanzhonghai/work/causal/causal-relation, universal_newlines=False, shell=None, istream=<valid stream>)
+[DEBUG 13:09:36] git.cmd Popen(['git', 'diff', '--cached', '--abbrev=40', '--full-index', '--raw'], cwd=/home/ruanzhonghai/work/causal/causal-relation, universal_newlines=False, shell=None, istream=None)
+[DEBUG 13:09:36] git.cmd Popen(['git', 'diff', '--abbrev=40', '--full-index', '--raw'], cwd=/home/ruanzhonghai/work/causal/causal-relation, universal_newlines=False, shell=None, istream=None)
+[DEBUG 13:09:36] git.cmd Popen(['git', 'cat-file', '--batch-check'], cwd=/home/ruanzhonghai/work/causal/causal-relation, universal_newlines=False, shell=None, istream=<valid stream>)
+main.py:59: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3, and in 3.10 it will stop working
+  if isinstance(v, collections.Mapping):
+[INFO 13:09:36] root Saving to FileStorageObserver in /home/ruanzhonghai/work/causal/results/sacred/3s5z_vs_3s6z/qmix_env=8_adam_td_lambda.
+[DEBUG 13:09:37] pymarl Using capture mode "fd"
+[INFO 13:09:37] pymarl Running command 'my_main'
+[INFO 13:09:37] pymarl Started run with ID "2"
+[DEBUG 13:09:37] pymarl Starting Heartbeat
+[DEBUG 13:09:37] my_main Started
+[INFO 13:09:37] my_main Experiment Parameters:
+[INFO 13:09:37] my_main 
+
+{   'GRF': False,
+    'action_selector': 'epsilon_greedy',
+    'agent': 'n_ncc',
+    'agent_output_type': 'q',
+    'alpha1': 0.1,
+    'alpha2': 1,
+    'anneal_intrin': 'Ture',
+    'anneal_speed': 2000000,
+    'batch_size': 128,
+    'batch_size_run': 4,
+    'beta1': 100,
+    'beta2': 2,
+    'buffer_cpu_only': True,
+    'buffer_size': 5000,
+    'checkpoint_path': '',
+    'critic_lr': 0.0005,
+    'cuda_num': 3,
+    'cuda_save': True,
+    'enemy_sample': 4,
+    'enemy_shape': 3,
+    'env': 'sc2',
+    'env_args': {   'continuing_episode': False,
+                    'debug': False,
+                    'difficulty': '7',
+                    'game_version': None,
+                    'heuristic_ai': False,
+                    'heuristic_rest': False,
+                    'map_name': '3s5z_vs_3s6z',
+                    'move_amount': 2,
+                    'obs_all_health': True,
+                    'obs_instead_of_state': False,
+                    'obs_last_action': False,
+                    'obs_own_health': True,
+                    'obs_pathing_grid': False,
+                    'obs_terrain_height': False,
+                    'obs_timestep_number': False,
+                    'replay_dir': '',
+                    'replay_prefix': '',
+                    'reward_death_value': 10,
+                    'reward_defeat': 0,
+                    'reward_negative_scale': 0.5,
+                    'reward_only_positive': True,
+                    'reward_scale': True,
+                    'reward_scale_rate': 20,
+                    'reward_sparse': False,
+                    'reward_win': 200,
+                    'seed': 125,
+                    'state_last_action': True,
+                    'state_timestep_number': False,
+                    'step_mul': 8},
+    'epsilon_anneal_time': 100000,
+    'epsilon_finish': 0.05,
+    'epsilon_start': 1.0,
+    'evaluate': False,
+    'gain': 0.01,
+    'gamma': 0.99,
+    'grad_norm_clip': 10,
+    'hypernet_embed': 64,
+    'i_one_clip': 0.002,
+    'itrin_two_clip': 0.7,
+    'label': 'CNCC_Dense',
+    'learner': 'CNCC_SMAC',
+    'learner_log_interval': 10000,
+    'load_step': 0,
+    'local_results_path': 'results',
+    'log_interval': 10000,
+    'lr': 0.001,
+    'mac': 'ncc_mac',
+    'mixer': 'qmix',
+    'mixing_embed_dim': 32,
+    'name': 'qmix_env=8_adam_td_lambda',
+    'obs_agent_id': True,
+    'obs_last_action': True,
+    'optim_alpha': 0.99,
+    'optim_eps': 1e-05,
+    'optimizer': 'adam',
+    'per_alpha': 0.6,
+    'per_beta': 0.4,
+    'predict_epoch': 25,
+    'project_name': 'Lazy_Essay',
+    'q_lambda': False,
+    'repeat_id': 1,
+    'return_priority': False,
+    'rnn_hidden_dim': 256,
+    'run': 'default',
+    'runner': 'parallel',
+    'runner_log_interval': 10000,
+    'sample_size': 16,
+    'save_model': False,
+    'save_model_interval': 200000,
+    'save_replay': True,
+    'seed': 125,
+    't_max': 13200000,
+    'target_update_interval': 200,
+    'td_lambda': 0.6,
+    'test_greedy': True,
+    'test_interval': 10000,
+    'test_nepisode': 32,
+    'use_cuda': True,
+    'use_int': False,
+    'use_layer_norm': False,
+    'use_orthogonal': False,
+    'use_per': False,
+    'use_tensorboard': False,
+    'wandb': True}
+
+[DEBUG 13:09:37] git.cmd Popen(['git', 'rev-parse', '--show-toplevel'], cwd=/home/ruanzhonghai/work/causal/causal-relation, universal_newlines=False, shell=None, istream=None)
+[DEBUG 13:09:38] urllib3.connectionpool Starting new HTTPS connection (1): api.wandb.ai:443
+[DEBUG 13:09:38] urllib3.connectionpool https://api.wandb.ai:443 "POST /graphql HTTP/1.1" 200 1712
+[DEBUG 13:09:39] urllib3.connectionpool https://api.wandb.ai:443 "POST /graphql HTTP/1.1" 200 351
+wandb: Currently logged in as: ruanzhh. Use `wandb login --relogin` to force relogin
+[DEBUG 13:09:39] git.cmd Popen(['git', 'cat-file', '--batch-check'], cwd=/home/ruanzhonghai/work/causal/causal-relation, universal_newlines=False, shell=None, istream=<valid stream>)
+wandb: - Waiting for wandb.init()...wandb: \ Waiting for wandb.init()...wandb: | Waiting for wandb.init()...wandb: wandb version 0.15.12 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.15.10
+wandb: Run data is saved locally in /home/ruanzhonghai/work/causal/causal-relation/wandb/run-20231028_130939-9dgu3khy
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run seed_125_CNCC_Dense
+wandb: ⭐️ View project at https://wandb.ai/ruanzhh/Lazy_Essay
+wandb: 🚀 View run at https://wandb.ai/ruanzhh/Lazy_Essay/runs/9dgu3khy
+[INFO 13:09:46] my_main Beginning training for 13200000 timesteps
+[INFO 13:09:46] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 38507 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-pk9qgq9i/
+[INFO 13:09:46] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 35179 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-4n9vhk62/
+[INFO 13:09:46] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 40807 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-f22nzjqo/
+[INFO 13:09:46] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 46799 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-a0ftps4u/
+[INFO 13:09:46] absl Connecting to: ws://127.0.0.1:38507/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 38507 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-pk9qgq9i/'
+[INFO 13:09:46] absl Connecting to: ws://127.0.0.1:46799/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 46799 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-a0ftps4u/'
+[INFO 13:09:46] absl Connecting to: ws://127.0.0.1:40807/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+[INFO 13:09:46] absl Connecting to: ws://127.0.0.1:35179/sc2api, attempt: 0, running: True
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 35179 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-4n9vhk62/'
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 40807 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-f22nzjqo/'
+Starting up...
+Starting up...
+Starting up...
+Starting up...
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+[INFO 13:09:47] absl Connecting to: ws://127.0.0.1:38507/sc2api, attempt: 1, running: True
+[INFO 13:09:47] absl Connecting to: ws://127.0.0.1:46799/sc2api, attempt: 1, running: True
+[INFO 13:09:47] absl Connecting to: ws://127.0.0.1:40807/sc2api, attempt: 1, running: True
+[INFO 13:09:47] absl Connecting to: ws://127.0.0.1:35179/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:46799
+Startup Phase 3 complete. Ready for commands.
+Listening on: 127.0.0.1:38507
+Startup Phase 3 complete. Ready for commands.
+Listening on: 127.0.0.1:35179
+Startup Phase 3 complete. Ready for commands.
+Listening on: 127.0.0.1:40807
+Startup Phase 3 complete. Ready for commands.
+[INFO 13:09:48] absl Connecting to: ws://127.0.0.1:38507/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:33766 accepted
+ReadyHandler: 127.0.0.1:33766 ready
+[INFO 13:09:48] absl Connecting to: ws://127.0.0.1:46799/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:49720 accepted
+ReadyHandler: 127.0.0.1:49720 ready
+[INFO 13:09:48] absl Connecting to: ws://127.0.0.1:40807/sc2api, attempt: 2, running: True
+[INFO 13:09:48] absl Connecting to: ws://127.0.0.1:35179/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:59402 accepted
+ReadyHandler: 127.0.0.1:59402 ready
+ConnectHandler: Request from 127.0.0.1:60728 accepted
+ReadyHandler: 127.0.0.1:60728 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+/home/ruanzhonghai/work/causal/causal-relation/components/episode_buffer.py:103: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  v = th.tensor(v, dtype=dtype, device=self.device)
+[INFO 13:09:53] my_main t_env: 182 / 13200000
+[INFO 13:09:53] my_main Estimated time left: 2 hours, 30 minutes, 51 seconds. Time passed: 6 seconds
+{'state_shape': 230, 'obs_shape': 136, 'n_actions': 15, 'n_agents': 8, 'episode_limit': 170, 'extra_inf_size': 27, 'n_enemies': 9, 'ally_size': 56, 'extrin_env_size': 54}
+{'state': {'vshape': 230}, 'obs': {'vshape': 136, 'group': 'agents'}, 'extrinsic_state': {'vshape': 27}, 'visible_matrix': {'vshape': (17,), 'group': 'agents'}, 'actions': {'vshape': (1,), 'group': 'agents', 'dtype': torch.int64}, 'avail_actions': {'vshape': (15,), 'group': 'agents', 'dtype': torch.int32}, 'probs': {'vshape': (15,), 'group': 'agents', 'dtype': torch.float32}, 'reward': {'vshape': (1,)}, 'terminated': {'vshape': (1,), 'dtype': torch.uint8}}
+Mixer Size: 
+63.105K
+/home/ruanzhonghai/.conda/envs/pymarl/lib/python3.8/site-packages/sacred/stdout_capturing.py:179: UserWarning: tee_stdout.wait timeout. Forcibly terminating.
+  warnings.warn("tee_stdout.wait timeout. Forcibly terminating.")
+/home/ruanzhonghai/.conda/envs/pymarl/lib/python3.8/site-packages/sacred/stdout_capturing.py:185: UserWarning: tee_stderr.wait timeout. Forcibly terminating.
+  warnings.warn("tee_stderr.wait timeout. Forcibly terminating.")
+[DEBUG 13:10:36] pymarl Stopping Heartbeat
+[ERROR 13:10:36] pymarl Failed after 0:00:59!
+Traceback (most recent calls WITHOUT Sacred internals):
+  File "main.py", line 38, in my_main
+    run_REGISTRY[_config['run']](_run, config, _log)
+  File "/home/ruanzhonghai/work/causal/causal-relation/run/run.py", line 54, in run
+    run_sequential(args=args, logger=logger)
+  File "/home/ruanzhonghai/work/causal/causal-relation/run/run.py", line 214, in run_sequential
+    learner.train(episode_sample, runner.t_env, episode)
+  File "/home/ruanzhonghai/work/causal/causal-relation/learners/CNCC_SMAC.py", line 194, in train
+    if self.use_int:
+AttributeError: 'CNCC_SMAC_Learner' object has no attribute 'use_int'
+

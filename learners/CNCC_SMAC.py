@@ -191,7 +191,7 @@ class CNCC_SMAC_Learner:
             if t_env > self.start_anneal_time and self.args.env_args['reward_sparse'] and self.args.anneal_intrin:
                 intrinsic = max(1 - (
                         t_env - self.start_anneal_time) / self.args.anneal_speed, 0) * intrinsic
-            if self.use_int:
+            if self.args.use_int:
                 rewards_new = rewards + intrinsic  # +intrinsic
             else:
                 rewards_new = rewards
