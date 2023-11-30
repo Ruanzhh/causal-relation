@@ -52,4 +52,4 @@ sample_size: 16
 cuda_save: True
 itrin_two_clip: 1
 
-use_int: True
+use_int: False # True

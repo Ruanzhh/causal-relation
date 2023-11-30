@@ -13,7 +13,7 @@ class NCCMAC(BasicMAC):
     def select_actions(self, ep_batch, t_ep, t_env, bs=slice(None), test_mode=False):
         # Only select actions for the selected batch elements in bs
         avail_actions = ep_batch["avail_actions"][:, t_ep]
-        qvals, c_hat, obs_hat = self.forward(ep_batch, t_ep, test_mode=test_mode)
+        qvals, _, _, c_hat, obs_hat = self.forward(ep_batch, t_ep, test_mode=test_mode)
         chosen_actions = self.action_selector.select_action(qvals[bs], avail_actions[bs], t_env, test_mode=test_mode)
         return chosen_actions
 
@@ -23,6 +23,6 @@ class NCCMAC(BasicMAC):
             
         agent_inputs = self._build_inputs(ep_batch, t)
         avail_actions = ep_batch["avail_actions"][:, t]
-        agent_outs, c_hat, obs_hat, self.hidden_states = self.agent(agent_inputs, self.hidden_states)
+        agent_outs, c_mean, c_logstd, c_hat, obs_hat, self.hidden_states = self.agent(agent_inputs, self.hidden_states)
 
-        return agent_outs, c_hat, obs_hat
+        return agent_outs, c_mean, c_logstd, c_hat, obs_hat

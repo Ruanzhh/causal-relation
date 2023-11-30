@@ -283,7 +283,8 @@ class StarCraft2Env(MultiAgentEnv):
         self._run_config = None
         self._sc2_proc = None
         self._controller = None
-        self.extrin_shape=self.n_enemies*3
+        self.n_extrin_variables = 3
+        self.extrin_shape=self.n_enemies*self.n_extrin_variables
         # Try to avoid leaking SC2 processes on shutdown
         atexit.register(lambda: self.close())
 
@@ -1014,7 +1015,7 @@ class StarCraft2Env(MultiAgentEnv):
         agents_obs = [self.get_obs_agent(i) for i in range(self.n_agents)]
         return agents_obs
     def get_extrinsic_state(self):
-        nf_en = 3
+        nf_en = self.n_extrin_variables 
         enemy_state = np.zeros((self.n_enemies, nf_en))
         center_x = self.map_x / 2
         center_y = self.map_y / 2

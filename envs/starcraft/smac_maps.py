@@ -96,6 +96,15 @@ map_param_registry = {
         "unit_type_bits": 2,
         "map_type": "stalkers_and_zealots",
     },
+    "7sz": {
+        "n_agents": 14,
+        "n_enemies": 14,
+        "limit": 200,
+        "a_race": "P",
+        "b_race": "P",
+        "unit_type_bits": 2,
+        "map_type": "stalkers_and_zealots",
+    },
 }
 
 

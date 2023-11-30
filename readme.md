@@ -43,13 +43,14 @@ bash install_gfootball.sh
 python main.py --config=LA_SMAC --env-config=sc2 with env_args.map_name=3m beta1=100 beta2=.1 label=LAIES wandb=True t_max=2500000 seed=125
 python main.py --config=LA_SMAC --env-config=sc2 with env_args.map_name=1c3s5z beta1=100  beta2=2 label=LAIES itrin_two_clip=0.7 t_max=3200000 wandb=True seed=125
 python main.py --config=LA_SMAC --env-config=sc2 with env_args.map_name=2m_vs_1z beta1=600 beta2=2 anneal_intrin=True itrin_two_clip=0.4 label=LAIES wandb=True anneal_speed=4000000 t_max=3200000 seed=125
-python main.py --config=LA_SMAC --env-config=sc2 with env_args.map_name=5m_vs_6m beta1=200 beta2=2 label=LAIES anneal_speed=4000000 wandb=True t_max=5200000 seed=125
-python main.py --config=LA_SMAC --env-config=sc2 with env_args.map_name=MMM2 beta1=100 beta2=2 label=LAIES anneal_speed=4000000 t_max=5200000 seed=125
-python main.py --config=LA_SMAC --env-config=sc2 with env_args.map_name=6h_vs_8z beta1=100 beta2=2 label=LAIES td_lambda=0.3 epsilon_anneal_time=500000 anneal_speed=4000000 wandb=True t_max=10200000 seed=125
+python main.py --config=CNCC_SMAC --env-config=sc2 with env_args.map_name=5m_vs_6m beta1=200 beta2=2 label=CNCC_Dense anneal_speed=4000000 wandb=True t_max=5200000 seed=125 use_int=Fasle
+python main.py --config=CNCC_SMAC --env-config=sc2 with env_args.map_name=MMM2 beta1=100 beta2=2 label=CNCC anneal_speed=4000000 t_max=5200000 seed=125 use_int=False wandb=True
+python main.py --config=CNCC_SMAC --env-config=sc2 with env_args.map_name=6h_vs_8z beta1=100 beta2=2 label=LAIES td_lambda=0.3 epsilon_anneal_time=500000 anneal_speed=4000000 wandb=True t_max=10200000 seed=125
 python main.py --config=LA_SMAC --env-config=sc2 with env_args.map_name=3s_vs_3z beta1=100 beta2=2 label=LAIES wandb=True t_max=4200000 seed=125
 python main.py --config=LA_SMAC --env-config=sc2 with env_args.map_name=8m_vs_9m beta1=10 beta2=20 label=LAIES itrin_two_clip=0.7  anneal_speed=2000000 wandb=True t_max=5200000 seed=125
 python main.py --config=LA_SMAC --env-config=sc2 with env_args.map_name=MMM beta1=20 beta2=2 label=LAIES wandb=True anneal_speed=4000000 t_max=2200000 seed=125
 python main.py --config=NCC_SMAC --env-config=sc2 with env_args.map_name=3s5z_vs_3s6z beta1=100  beta2=2 label=NCC itrin_two_clip=0.7 t_max=13200000 wandb=True seed=125 alpha1=0.1 alpha2=0.1
+python main.py --config=CNCC_SMAC --env-config=sc2 with env_args.map_name=5s10z beta1=100  beta2=2 label=CNCC itrin_two_clip=0.7 t_max=13200000 wandb=True seed=125 use_int=Fasle 
 
 python main.py --config=LA_SMAC_PPO --env-config=sc2 with env_args.map_name=3m beta1=90 beta2=0 label=LAIES wandb=True t_max=3200000 t_max=3200000 seed=125
 python main.py --config=LA_SMAC_PPO --env-config=sc2 with env_args.map_name=3s_vs_3z beta1=100 beta2=0 label=LAIES anneal_speed=4000000 wandb=True t_max=4200000 seed=125

@@ -39,8 +39,8 @@ class NNCCAgent(nn.Module):
     def _cognition_module(self, hidden_state):
         c_mean = self.fc_cog_mean(hidden_state)
         c_logstd = self.fc_cog_logstd(hidden_state)
-        c_hat = c_mean + torch.exp(c_logstd) * torch.normal(mean=0.0, std=1.0, size=c_logstd.shape).to(c_mean.device)
-        return c_hat
+        c_hat = c_mean + torch.exp(0.5*c_logstd) * torch.normal(mean=0.0, std=1.0, size=c_logstd.shape).to(c_mean.device)
+        return c_mean, c_logstd, c_hat
 
     def _decoder(self, hidden_state):
         obs_hat = F.relu(self.fc_decoder1(hidden_state))
@@ -56,7 +56,7 @@ class NNCCAgent(nn.Module):
         h_in = hidden_state.reshape(-1, self.args.rnn_hidden_dim)
         hh = self.rnn(x, h_in)
 
-        c_hat = self._cognition_module(hh)
+        c_mean, c_logstd, c_hat = self._cognition_module(hh)
         obs_hat = self._decoder(c_hat)
 
         # TODO: check the size
@@ -67,4 +67,4 @@ class NNCCAgent(nn.Module):
         else:
             q = self.fc2(q_input)
 
-        return q.view(b, a, -1), c_hat.view(b, a, -1), obs_hat.view(b, a, -1), hh.view(b, a, -1)
+        return q.view(b, a, -1), c_mean.view(b, a, -1), c_logstd.view(b, a, -1), c_hat.view(b, a, -1), obs_hat.view(b, a, -1), hh.view(b, a, -1)

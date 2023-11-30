@@ -113,16 +113,22 @@ class CNCC_SMAC_Learner:
         self.mac.agent.train()
         mac_out = []
         c_hats = []
+        c_means = []
+        c_logstds = []
         obs_hats = []
         self.mac.init_hidden(batch.batch_size)
         for t in range(batch.max_seq_length):
-            agent_outs, c_hat, obs_hat = self.mac.forward(batch, t=t)
+            agent_outs, c_mean, c_logstd, c_hat, obs_hat = self.mac.forward(batch, t=t)
             # b, a, e
+            c_means.append(c_mean)
+            c_logstds.append(c_logstd)
             c_hats.append(c_hat)
             obs_hats.append(obs_hat)
             mac_out.append(agent_outs)
         mac_out = th.stack(mac_out, dim=1)  # Concat over time
-        c_hats = th.stack(c_hats, dim=1)  # Concat over time
+        c_hats = th.stack(c_hats, dim=1)[:,:-1]  # Concat over time and remove 
+        c_means = th.stack(c_means, dim=1)[:,:-1]
+        c_logstds = th.stack(c_logstds, dim=1)[:,:-1]
         # b, t, a, e
         obs_hats = th.stack(obs_hats, dim=1)  # Concat over time
 
@@ -135,7 +141,7 @@ class CNCC_SMAC_Learner:
             target_mac_out = []
             self.target_mac.init_hidden(batch.batch_size)
             for t in range(batch.max_seq_length):
-                target_agent_outs, _, _ = self.target_mac.forward(batch, t=t)
+                target_agent_outs, _, _, _, _ = self.target_mac.forward(batch, t=t)
                 target_mac_out.append(target_agent_outs)
 
             # We don't need the first timesteps Q-Value estimate for calculating targets
@@ -183,7 +189,7 @@ class CNCC_SMAC_Learner:
             intrinsic = self.args.beta2 * CDI + self.args.beta1 * IDI
             intrinsic = intrinsic.clamp(max=self.args.itrin_two_clip)
             mean_alive = (agent_alive * terminated).sum(dim=-1).sum(dim=-1).mean()
-            enemy_alive = (((batch['extrinsic_state'][:, 1:]) * terminated).sum(-2).reshape(b, self.n_enemies, 3)[
+            enemy_alive = (((batch['extrinsic_state'][:, 1:]) * terminated).sum(-2).reshape(b, self.n_enemies, self.args.enemy_shape)[
                                ..., 0] > 0).float().sum(-1).mean()
             if not self.init_anneal_time and mean_rewards > 0.00:
                 self.init_anneal_time = True
@@ -191,7 +197,8 @@ class CNCC_SMAC_Learner:
             if t_env > self.start_anneal_time and self.args.env_args['reward_sparse'] and self.args.anneal_intrin:
                 intrinsic = max(1 - (
                         t_env - self.start_anneal_time) / self.args.anneal_speed, 0) * intrinsic
-            if self.use_int:
+            if self.args.use_int:
+                print(rewards.sum(), intrinsic.sum())
                 rewards_new = rewards + intrinsic  # +intrinsic
             else:
                 rewards_new = rewards
@@ -208,23 +215,32 @@ class CNCC_SMAC_Learner:
         # kl loss
         kl_div_matrix = torch.zeros((b, t, a, a))
         # c_hat b, t, a, e
+        _, _ , _, hidden_size = c_hats.shape
+        c_hats = c_hats.reshape(-1, a, hidden_size)
+        # c_logstds = c_logstds.reshape(-1, a, hidden_size)
+        # c_means = 
         for i in range(a):
             for j in range(i+1, a):
-                dist_p = Categorical(F.softmax(c_hats[..., i, :], dim=-1))
-                dist_q = Categorical(F.softmax(c_hats[..., j, :], dim=-1))
-
-                kl_div = torch.distributions.kl.kl_divergence(dist_p, dist_q).sum()
-                
+                dist_p = Categorical(F.softmax(c_hats[:, i, :], dim=-1))
+                dist_q = Categorical(F.softmax(c_hats[:, j, :], dim=-1))
+                # print(dist_p)
+                #  kl_div = 0.5 * (-1 + c_logstds[..., i, :] - c_logstds[..., j, :] 
+                #                 + torch.exp(c_logstds[..., j, :]) / torch.exp(c_logstds[..., i, :])
+                #                 + torch.square(c_means[..., j, :] - c_means[..., i, :]) / torch.exp(c_logstds[..., i, :]))
+                # kl_div = kl_div.sum(dim=-1)
+                kl_div = torch.distributions.kl.kl_divergence(dist_p, dist_q)# .sum(dim=-1)
+                # print("kl_div: ", kl_div.shape)
+                kl_div = kl_div.reshape(b, t)
                 kl_div_matrix[..., i, j] = kl_div
                 kl_div_matrix[..., j, i] = kl_div
         with th.no_grad():
             causal_adj = self.target_model_env.get_causal_relation(model_s.clone(), state.clone(),
                                                                                             actions_onehot,
                                                                                             enemies_visible, ac)
-        # print(causal_adj[0][0])
+        # print("causal relation:",causal_adj[0][0])
         kl_div_matrix = kl_div_matrix.to(self.device)
         kl_div_matrix = kl_div_matrix * causal_adj
-        kl_loss = kl_div_matrix.mean(dim=(0,1,2,3)) / (a*a*a)
+        kl_loss = kl_div_matrix.mean(dim=(0,1,2,3)) 
         # reconstruct loss
         obs = batch['obs']
         rec_loss = nn.MSELoss(reduction='mean')(obs, obs_hats)
@@ -245,8 +261,8 @@ class CNCC_SMAC_Learner:
             masked_td_error = masked_td_error.sum(1) * per_weight
 
         loss = L_td = masked_td_error.sum() / mask.sum()
-        print(loss, kl_loss)
-        loss = loss + self.args.alpha1 * kl_loss + self.args.alpha2 * rec_loss
+        # print(loss, kl_loss)
+        loss = loss + self.args.alphakl * kl_loss + self.args.alpharec * rec_loss
         # Optimise
         self.optimiser.zero_grad()
         loss.backward()
@@ -470,6 +486,7 @@ class Predict_Network(nn.Module):
             avail_u = torch.ones_like(a).type_as(a)
         
         causal_influences = []
+        causal_influences_ = []
         
         for i in range(n_agents):
             ATE_a = (full_a.clone())
@@ -479,21 +496,32 @@ class Predict_Network(nn.Module):
             p_s_a_noi = self.counterfactual(s_a_noi, full_h)
             p_s_a_noi = p_s_a_noi * (avail_u[..., i, :].unsqueeze(-1))
             # compute average
+            # b, t, n_actions, n_variables
             p_s_a_mean_noi = p_s_a_noi.sum(dim=-2) / (avail_u[..., i, :].sum(dim=-1).unsqueeze(-1) + 1e-6)
             p_s_a_mean_noi = p_s_a_mean_noi.unsqueeze(-2).repeat(1, 1, n_actions, 1)
-            causal_influence = torch.abs(p_s_a_noi - p_s_a_mean_noi)
+            # print("p_s_a_noi", p_s_a_noi.shape) b, t, n_actions, n_variables
+            causal_influence = torch.abs(torch.max(p_s_a_noi, dim=-2)[0] - torch.min(p_s_a_noi, dim=-2)[0])
+            # causal_influence = torch.abs(p_s_a_noi - p_s_a_mean_noi)
             # b,t,n_variables
-            causal_influence = torch.max(causal_influence, dim=-2)[0]
+            # causal_influence = torch.max(causal_influence, dim=-2)[0]
+            # print(i, causal_influence[0][0])
+            # causal_influence = torch.max(p_s_a_noi, dim=-2)[0]
             causal_influences.append(causal_influence)
+            # causal_influences_.append(causal_influence_)
             # b,t,n_action,n_variables
         # b,t,n_agents,n_variables
         causal_incluences = torch.stack(causal_influences, dim=2)
+        # causal_incluences_ = torch.stack(causal_influences_, dim=2)
         # b,t,2,n_variables
         causal_relation = torch.topk(causal_incluences, k=2, dim=-2)[1]
+        # causal_relation_ = torch.topk(causal_incluences_, k=2, dim=-2)[1]
+        # print(causal_relation.shape)
         causal_adj = torch.zeros((b, t, n_agents, n_agents)).to(a.device)
+        # print(causal_relation[0][0], causal_relation_[0][0])
         for b_ in range(b):
             for t_ in range(t):
                 causal_adj[b_][t_].index_put_(indices=[causal_relation[b_][t_][0], causal_relation[b_][t_][1]], values=torch.tensor(1.0).to(a.device))
+                causal_adj[b_][t_].index_put_(indices=[causal_relation[b_][t_][1], causal_relation[b_][t_][0]], values=torch.tensor(1.0).to(a.device))
 
         return causal_adj
 
