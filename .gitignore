@@ -1,2 +1,4 @@
 wandb/*
 logs/*
+csv_file/*
+csv_files/*
