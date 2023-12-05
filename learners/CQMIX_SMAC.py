@@ -143,9 +143,12 @@ class CQMIX_SMAC_Learner:
             mean_alive = (agent_alive * terminated).sum(dim=-1).sum(dim=-1).mean()
             enemy_alive = (((batch['extrinsic_state'][:, 1:]) * terminated).sum(-2).reshape(b, self.n_enemies, self.args.enemy_shape)[
                                ..., 0] > 0).float().sum(-1).mean()
-            causal_adj, causal_relation = self.target_model_env.get_causal_relation(model_s.clone(), state.clone(),
+            causal_relation = self.target_model_env.get_causal_relation(model_s.clone(), state.clone(),
                                                                                             actions_onehot,
                                                                                             enemies_visible, ac)
+            rand_relation = True
+            if rand_relation:
+                causal_relation = torch.randint(0, self.n_agents, causal_relation.shape).to(causal_relation.device)
         # Calculate the Q-Values necessary for the target
         # with th.no_grad():
             self.target_mac.agent.train()
@@ -360,52 +363,6 @@ class Predict_Network(nn.Module):
         log_prob = torch.sum(log_prob, -1, keepdim=True)
         return log_prob
 
-    def get_opp_intrinsic(self, s_a, s, a, enemies_visible, avail_u=None):
-        b, t, n_agents, n_actions = a.shape
-
-        p_s_a, h = self.forward(s_a)
-
-        h_new = torch.zeros_like(h).to(h.device)
-        h_new[:, 1:] = h[:, :-1]
-        full_actions = torch.ones((b, t, n_agents, n_actions, n_actions)) * torch.eye(n_actions)
-        full_actions = full_actions.type_as(s).to(a.device)
-        full_s = s.unsqueeze(-2).repeat(1, 1, n_actions, 1)
-        full_a = a.unsqueeze(-2).repeat(1, 1, 1, n_actions, 1)
-        full_h = h_new.unsqueeze(-2).repeat(1, 1, n_actions, 1)
-        intrinsic_1 = torch.zeros((b, t, n_agents)).to(a.device)
-        Enemy = torch.zeros((b, t, n_agents, p_s_a.shape[-1])).to(a.device)
-        if not self.args.cuda_save:
-            sample_size=self.args.sample_size
-            random_ = torch.rand(b, t, sample_size, n_agents, n_actions).type_as(s)*(avail_u.unsqueeze(-3))
-            sample_a=torch.zeros_like(random_)
-            values, indices = random_.topk(1, dim=-1, largest=True, sorted=True)
-            random_=(random_==values).type_as(s)*(avail_u.unsqueeze(-3))
-            random_full_s = s.unsqueeze(-2).repeat(1, 1, sample_size, 1)
-            random_s_a=torch.cat((random_full_s,sample_a.reshape(b, t, sample_size, -1)),dim=-1)
-            random_full_h = h_new.unsqueeze(-2).repeat(1, 1, sample_size, 1)
-            s_enemy_visible=enemies_visible.sum(dim=-2).clamp(min=0,max=1)
-            p_s_random = self.counterfactual(random_s_a, random_full_h).mean(dim=-2)
-            ATE_enemy_joint=s_enemy_visible * F.mse_loss(p_s_random, p_s_a, reduction='none')
-            intrinsic_2=ATE_enemy_joint.sum(dim=-1).unsqueeze(-1)
-        else:
-            intrinsic_2 =torch.zeros((b, t,1))
-        if avail_u == None:
-            avail_u = torch.ones_like(a).type_as(a)
-        for i in range(n_agents):
-            ATE_a = (full_a.clone())
-            ATE_a[..., i, :, :] = full_actions[..., i, :, :]
-            ATE_a = ATE_a.transpose(-2, -3).reshape(b, t, n_actions, -1)
-            s_a_noi = torch.cat((full_s, ATE_a), dim=-1)
-            p_s_a_noi = self.counterfactual(s_a_noi, full_h)
-            p_s_a_noi = p_s_a_noi * (avail_u[..., i, :].unsqueeze(-1))
-            p_s_a_mean_noi = p_s_a_noi.sum(dim=-2) / (avail_u[..., i, :].sum(dim=-1).unsqueeze(-1) + 1e-6)
-            ATE_enemy_i = enemies_visible[..., i, :] * F.mse_loss(p_s_a_mean_noi, p_s_a, reduction='none')
-            # ATE_enemy_i=enemies_visible[...,i,:]*torch.abs(p_s_a_mean_noi-p_s_a)
-            ATE_i = ATE_enemy_i.sum(dim=-1)
-            intrinsic_1[..., i] = ATE_i
-            Enemy[..., i, :] = ATE_enemy_i
-        return intrinsic_1,intrinsic_2, Enemy
-
     def get_causal_relation(self, s_a, s, a, enemies_visible, avail_u=None):
         b, t, n_agents, n_actions = a.shape
 
@@ -435,16 +392,8 @@ class Predict_Network(nn.Module):
             # b, t, n_actions, n_variables
             p_s_a_mean_noi = p_s_a_noi.sum(dim=-2) / (avail_u[..., i, :].sum(dim=-1).unsqueeze(-1) + 1e-6)
             p_s_a_mean_noi = p_s_a_mean_noi.unsqueeze(-2).repeat(1, 1, n_actions, 1)
-            # print("p_s_a_noi", p_s_a_noi.shape) b, t, n_actions, n_variables
             causal_influence = torch.abs(torch.max(p_s_a_noi, dim=-2)[0] - torch.min(p_s_a_noi, dim=-2)[0])
-            # causal_influence = torch.abs(p_s_a_noi - p_s_a_mean_noi)
-            # b,t,n_variables
-            # causal_influence = torch.max(causal_influence, dim=-2)[0]
-            # print(i, causal_influence[0][0])
-            # causal_influence = torch.max(p_s_a_noi, dim=-2)[0]
             causal_influences.append(causal_influence)
-            # causal_influences_.append(causal_influence_)
-            # b,t,n_action,n_variables
         # b,t,n_agents,n_variables
         causal_incluences = torch.stack(causal_influences, dim=2)
         # causal_incluences_ = torch.stack(causal_influences_, dim=2)
@@ -452,14 +401,9 @@ class Predict_Network(nn.Module):
         causal_relation = torch.topk(causal_incluences, k=2, dim=-2)[1]
         # causal_relation_ = torch.topk(causal_incluences_, k=2, dim=-2)[1]
         # print(causal_relation.shape)
-        causal_adj = torch.zeros((b, t, n_agents, n_agents)).to(a.device)
         # print(causal_relation[0][0], causal_relation_[0][0])
-        for b_ in range(b):
-            for t_ in range(t):
-                causal_adj[b_][t_].index_put_(indices=[causal_relation[b_][t_][0], causal_relation[b_][t_][1]], values=torch.tensor(1.0).to(a.device))
-                causal_adj[b_][t_].index_put_(indices=[causal_relation[b_][t_][1], causal_relation[b_][t_][0]], values=torch.tensor(1.0).to(a.device))
 
-        return causal_adj, causal_relation
+        return causal_relation
 
     def update(self, own_variable, other_variable, mask):
         if mask.sum() > 0:

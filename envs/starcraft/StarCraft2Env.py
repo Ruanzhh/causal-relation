@@ -283,7 +283,7 @@ class StarCraft2Env(MultiAgentEnv):
         self._run_config = None
         self._sc2_proc = None
         self._controller = None
-        self.n_extrin_variables = 3
+        self.n_extrin_variables = 1
         self.extrin_shape=self.n_enemies*self.n_extrin_variables
         # Try to avoid leaking SC2 processes on shutdown
         atexit.register(lambda: self.close())
@@ -1017,24 +1017,24 @@ class StarCraft2Env(MultiAgentEnv):
     def get_extrinsic_state(self):
         nf_en = self.n_extrin_variables 
         enemy_state = np.zeros((self.n_enemies, nf_en))
-        center_x = self.map_x / 2
-        center_y = self.map_y / 2
+        # center_x = self.map_x / 2
+        # center_y = self.map_y / 2
         for e_id, e_unit in self.enemies.items():
             if e_unit.health > 0:
-                x = e_unit.pos.x
-                y = e_unit.pos.y
+                # x = e_unit.pos.x
+                # y = e_unit.pos.y
                 # enemy_state[e_id, :] = (
                 #     e_unit.health / e_unit.health_max
                 # )  # health
                 enemy_state[e_id, 0] = (
                     e_unit.health / e_unit.health_max
                 )  # health
-                enemy_state[e_id, 1] = (
-                    x - center_x
-                ) / self.max_distance_x  # relative X
-                enemy_state[e_id, 2] = (
-                    y - center_y
-                ) / self.max_distance_y  # relative Y
+                # enemy_state[e_id, 1] = (
+                    # x - center_x
+                # ) / self.max_distance_x  # relative X
+                # enemy_state[e_id, 2] = (
+                    # y - center_y
+                # ) / self.max_distance_y  # relative Y
         state = enemy_state.flatten().astype(dtype=np.float32)
         return state
 

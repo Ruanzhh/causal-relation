@@ -17,7 +17,13 @@ class CausalMixer(nn.Module):
 
         self.abs = abs # monotonicity constraint
         self.qmix_pos_func = getattr(self.args, "qmix_pos_func", "abs")
-        
+
+        # hyper w0 b0
+        self.hyper_w0 = nn.Sequential(nn.Linear(self.input_dim+self.n_variables, args.hypernet_embed),
+                                        nn.ReLU(inplace=True),
+                                        nn.Linear(args.hypernet_embed, 2))
+        self.hyper_b0 = nn.Sequential(nn.Linear(self.input_dim, 2))
+
         # hyper w1 b1
         self.hyper_w1 = nn.Sequential(nn.Linear(self.input_dim, args.hypernet_embed),
                                         nn.ReLU(inplace=True),
@@ -36,17 +42,16 @@ class CausalMixer(nn.Module):
             for m in self.modules():
                 orthogonal_init_(m)
 
-    def forward(self, qvals, causal_relations, states):
+    def forward(self, qvals, causal_relations, states, random=False):
         # causal_relations: b, t, 2, n_variables
         causal_relations = causal_relations.permute(0, 1, 3, 2)
         if qvals.shape[1] == causal_relations.shape[1]:
             causal_relations = causal_relations.unsqueeze(2)
         else:
             causal_relations = th.cat((causal_relations, causal_relations[:, -1].unsqueeze(1)), dim=1).unsqueeze(2)
-
         # reshape
         b, t, _ = qvals.size()
-        print(qvals.shape, causal_relations.shape) 
+        # print(qvals.shape, causal_relations.shape) 
         # qvals = qvals.reshape(b * t, 1, self.n_agents)
         # states = states.reshape(-1, self.state_dim)
 
@@ -54,7 +59,13 @@ class CausalMixer(nn.Module):
         for variable in range(self.n_variables):
             qval_v_0 = th.gather(qvals, dim=-1, index=causal_relations[:, :, :, variable, 0]) # b, t, 1
             qval_v_1 = th.gather(qvals, dim=-1, index=causal_relations[:, :, :, variable, 1]) # b, t, 1
-            group_qval = qval_v_0 + qval_v_1
+            group_qval = th.cat((qval_v_0, qval_v_1), dim=-1).reshape(b*t, 1, -1) # b*t, 1, 2
+            var_onehot = th.zeros(self.n_variables).unsqueeze(0).unsqueeze(0).repeat(b, t, 1).to(group_qval.device)
+            var_onehot[variable] = 1
+            w0 = self.hyper_w0(th.cat((states, var_onehot), dim=-1)).view(-1, 2, 1)
+            if self.abs:
+                w0 = self.pos_func(w0)
+            group_qval = th.matmul(group_qval, w0).reshape(b, t, 1) # b*t, 1, 1
             group_qvals.append(group_qval)
             # group_qval: b, t, 1
         other_val = th.sum(qvals, dim=-1).unsqueeze(-1)
