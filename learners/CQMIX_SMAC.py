@@ -146,9 +146,40 @@ class CQMIX_SMAC_Learner:
             causal_relation = self.target_model_env.get_causal_relation(model_s.clone(), state.clone(),
                                                                                             actions_onehot,
                                                                                             enemies_visible, ac)
-            rand_relation = True
-            if rand_relation:
-                causal_relation = torch.randint(0, self.n_agents, causal_relation.shape).to(causal_relation.device)
+            
+            # causal_relation = causal_relation.reshape(b*t, -1) # index
+            top2 = causal_relation[:,:,:2,:].reshape(b*t, -1) # b, t, n_a, n_v
+            topn_1 = causal_relation[:,:,:self.n_agents-1,:].reshape(b*t, -1) # b, t, n_a, n_v
+            src = torch.ones(b*t, self.n_agents).to(causal_relation.device)
+            
+            out = torch.zeros(b*t, self.n_agents).to(causal_relation.device)
+            top2 = torch.chunk(top2, 2 * self.n_enemies // self.n_agents + 1, dim=-1)
+            for i in range(len(top2)):
+                out.scatter_(1, top2[i], src)
+            reward_top = out.sum(-1).reshape(b, t, 1) 
+            reward_top = max(1 - t_env / self.args.anneal_speed, 0) * reward_top
+
+            out = torch.zeros(b*t, self.n_agents).to(causal_relation.device)
+            # print(causal_relation.shape, self.n_agents)
+            topn_1 = torch.chunk(topn_1, (self.n_agents-1) * self.n_enemies // self.n_agents + 1, dim=-1)
+            # for i in range(len(causal_relation)):
+                # print(causal_relation[i].shape)
+            for i in range(len(topn_1)):
+                out.scatter_(1, topn_1[i], src)
+            penalty_last = out.sum(-1).reshape(b, t, 1)-self.n_agents
+            # print(out.mean())
+            
+
+            # n_deligent_agent = torch.tensor([len(causal_relation[i].unique()) for i in range(b*t)]).to(causal_relation.device) # b*t
+            
+            # intrin_rew = torch.ones((b*t,)).to(causal_relation.device) * (self.n_enemies*2-self.n_agents)
+            # intrin_rew = intrin_rew + n_deligent_agent
+            # penalty_last = out.reshape(b, t, 1)#-self.n_agents
+            print(reward_top.mean(), penalty_last.mean())
+            # intrin_rew = max(1 - t_env / self.args.anneal_speed, 0) * intrin_rew
+            
+            
+            # causal_relation = torch.randint(0, self.n_agents, causal_relation.shape).to(causal_relation.device)
         # Calculate the Q-Values necessary for the target
         # with th.no_grad():
             self.target_mac.agent.train()
@@ -172,8 +203,10 @@ class CQMIX_SMAC_Learner:
                 target_max_qvals = self.target_mixer(target_max_qvals, causal_relation, batch["state"])
             else:
                 target_max_qvals = self.target_mixer(target_max_qvals, batch["state"])
-
-            rewards_new = rewards
+            # print("rewards",rewards.mean())
+            # print("intrin",intrin_rew.mean()*self.args.intrin_ratio)
+            intrin_rew = reward_top * self.args.intrin_ratio + penalty_last * self.args.intrin_ratio
+            rewards_new = rewards + intrin_rew 
             if getattr(self.args, 'q_lambda', False):
                 qvals = th.gather(target_mac_out, 3, batch["actions"]).squeeze(3)
                 if self.args.mixer == "cqmix":
@@ -217,7 +250,7 @@ class CQMIX_SMAC_Learner:
             self.last_target_update_episode = episode_num
 
         if random.random() < 0.01 and self.Target_update:
-            self.writereward(self.csv_path, rewards, mask, L_td, L_td, np.array(
+            self.writereward(self.csv_path, rewards, intrin_rew, mask, L_td, L_td, np.array(
                 loss_model_list).mean(), mean_alive, enemy_alive, t_env)
 
         if t_env - self.log_stats_t >= self.args.learner_log_interval:
@@ -278,13 +311,14 @@ class CQMIX_SMAC_Learner:
             th.save(self.mixer.state_dict(), "{}/mixer.th".format(path))
         th.save(self.optimiser.state_dict(), "{}/opt.th".format(path))
 
-    def writereward(self, path, reward, mask, td_loss, loss, OPP_eval_Loss, 
+    def writereward(self, path, reward, intrin_rew, mask, td_loss, loss, OPP_eval_Loss, 
                     ally_alive, enemy_alive, step):
         win_rate = (reward.sum(dim=1) > 0).float().mean()
         reward = reward.sum() / mask.sum()
+        intrin_rew = intrin_rew.sum() / mask.sum()
         if self.args.wandb:
             # wandb.log({f"{phase} MSE loss": epoch_mse_loss})
-            wandb.log({'step': step, 't_win_rate': win_rate, " TD_Loss": td_loss, "Training reward": reward,
+            wandb.log({'step': step, 't_win_rate': win_rate, " TD_Loss": td_loss, "Training reward": reward, "intrin_rew": intrin_rew, 
                        'OPP_eval_Loss': OPP_eval_Loss,
                        'ally_alive': ally_alive, 'enemy_alive': enemy_alive, })
         if os.path.isfile(path):
@@ -336,6 +370,7 @@ class Predict_Network(nn.Module):
         self.args=args
         self.apply(weights_init_)
         self.lr = lr
+        self.k = args.k
 
         self.optimizer = optim.Adam(self.parameters(), lr=self.lr)
 
@@ -398,7 +433,7 @@ class Predict_Network(nn.Module):
         causal_incluences = torch.stack(causal_influences, dim=2)
         # causal_incluences_ = torch.stack(causal_influences_, dim=2)
         # b,t,2,n_variables
-        causal_relation = torch.topk(causal_incluences, k=2, dim=-2)[1]
+        causal_relation = torch.topk(causal_incluences, k=n_agents, dim=-2)[1]
         # causal_relation_ = torch.topk(causal_incluences_, k=2, dim=-2)[1]
         # print(causal_relation.shape)
         # print(causal_relation[0][0], causal_relation_[0][0])

@@ -10,6 +10,7 @@ class CausalMixer(nn.Module):
         super(CausalMixer, self).__init__()
 
         self.args = args
+        self.k = args.k
         self.n_agents = args.n_agents
         self.n_variables = args.n_variables
         self.embed_dim = args.mixing_embed_dim
@@ -19,15 +20,20 @@ class CausalMixer(nn.Module):
         self.qmix_pos_func = getattr(self.args, "qmix_pos_func", "abs")
 
         # hyper w0 b0
-        self.hyper_w0 = nn.Sequential(nn.Linear(self.input_dim+self.n_variables, args.hypernet_embed),
+        self.hyper_w0_0 = nn.Sequential(nn.Linear(self.input_dim+self.n_variables, args.hypernet_embed),
                                         nn.ReLU(inplace=True),
-                                        nn.Linear(args.hypernet_embed, 2))
-        self.hyper_b0 = nn.Sequential(nn.Linear(self.input_dim, 2))
+                                        nn.Linear(args.hypernet_embed, self.k))
+        self.hyper_b0_0 = nn.Sequential(nn.Linear(self.input_dim+self.n_variables, 1))
+        
+        # self.hyper_w0_1 = nn.Sequential(nn.Linear(self.input_dim, args.hypernet_embed),
+        #                                 nn.ReLU(inplace=True),
+        #                                 nn.Linear(args.hypernet_embed, self.n_agents))
+        # self.hyper_b0_1 = nn.Sequential(nn.Linear(self.input_dim, 1))
 
         # hyper w1 b1
         self.hyper_w1 = nn.Sequential(nn.Linear(self.input_dim, args.hypernet_embed),
                                         nn.ReLU(inplace=True),
-                                        nn.Linear(args.hypernet_embed, (self.n_variables+1) * self.embed_dim))
+                                        nn.Linear(args.hypernet_embed, (self.n_variables) * self.embed_dim))
         self.hyper_b1 = nn.Sequential(nn.Linear(self.input_dim, self.embed_dim))
         
         # hyper w2 b2
@@ -57,19 +63,27 @@ class CausalMixer(nn.Module):
 
         group_qvals = []
         for variable in range(self.n_variables):
-            qval_v_0 = th.gather(qvals, dim=-1, index=causal_relations[:, :, :, variable, 0]) # b, t, 1
-            qval_v_1 = th.gather(qvals, dim=-1, index=causal_relations[:, :, :, variable, 1]) # b, t, 1
-            group_qval = th.cat((qval_v_0, qval_v_1), dim=-1).reshape(b*t, 1, -1) # b*t, 1, 2
+            qval_vars = [th.gather(qvals, dim=-1, index=causal_relations[:, :, :, variable, i]) for i in range(self.k)]
+            # qval_v_0 = th.gather(qvals, dim=-1, index=causal_relations[:, :, :, variable, 0]) # b, t, 1
+            # qval_v_1 = th.gather(qvals, dim=-1, index=causal_relations[:, :, :, variable, 1]) # b, t, 1
+            # qval_v_2 = th.gather(qvals, dim=-1, index=causal_relations[:, :, :, variable, 2]) # b, t, 1
+            group_qval = th.cat(qval_vars, dim=-1).reshape(b*t, 1, -1) # b*t, 1, 2
             var_onehot = th.zeros(self.n_variables).unsqueeze(0).unsqueeze(0).repeat(b, t, 1).to(group_qval.device)
             var_onehot[variable] = 1
-            w0 = self.hyper_w0(th.cat((states, var_onehot), dim=-1)).view(-1, 2, 1)
+            w0_0 = self.hyper_w0_0(th.cat((states, var_onehot), dim=-1)).view(-1, self.k, 1)
             if self.abs:
-                w0 = self.pos_func(w0)
-            group_qval = th.matmul(group_qval, w0).reshape(b, t, 1) # b*t, 1, 1
-            group_qvals.append(group_qval)
+                w0_0 = self.pos_func(w0_0)
+            b0_0 = self.hyper_b0_0(th.cat((states, var_onehot), dim=-1)).view(-1, 1, 1)
+            group_qval = th.matmul(group_qval, w0_0)+b0_0 # b*t, 1, 1
+            group_qvals.append(group_qval.reshape(b, t, 1))
             # group_qval: b, t, 1
-        other_val = th.sum(qvals, dim=-1).unsqueeze(-1)
-        group_qvals.append(other_val)
+        # other_val = th.sum(qvals, dim=-1).unsqueeze(-1)
+        w0_1 = self.hyper_w0_1(states).view(-1, self.n_agents, 1)
+        b0_1 = self.hyper_b0_1(states).view(-1, 1, 1)
+        
+        other_val = th.matmul(qvals.reshape(b*t, 1, self.n_agents), w0_1) + b0_1
+        group_qvals.append(other_val.reshape(b, t, 1))
+        
         group_qvals = th.stack(group_qvals, dim=-1) # b, t, m+1
         group_qvals = group_qvals.reshape(b*t, 1, -1)
         # First layer
