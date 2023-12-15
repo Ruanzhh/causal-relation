@@ -1,4 +1,2477 @@
-Traceback (most recent call last):
-  File "main.py", line 6, in <module>
-    from sacred import Experiment, SETTINGS
-ModuleNotFoundError: No module named 'sacred'
+[DEBUG 10:07:31] git.util Failed checking if running in CYGWIN due to: FileNotFoundError(2, 'No such file or directory')
+[DEBUG 10:07:31] git.cmd Popen(['git', 'diff', '--cached', '--abbrev=40', '--full-index', '--raw'], cwd=/home/ruanzhonghai/work/causal-relation, universal_newlines=False, shell=None, istream=None)
+[DEBUG 10:07:31] git.cmd Popen(['git', 'diff', '--abbrev=40', '--full-index', '--raw'], cwd=/home/ruanzhonghai/work/causal-relation, universal_newlines=False, shell=None, istream=None)
+[DEBUG 10:07:31] git.cmd Popen(['git', 'cat-file', '--batch-check'], cwd=/home/ruanzhonghai/work/causal-relation, universal_newlines=False, shell=None, istream=<valid stream>)
+[DEBUG 10:07:31] git.cmd Popen(['git', 'diff', '--cached', '--abbrev=40', '--full-index', '--raw'], cwd=/home/ruanzhonghai/work/causal-relation, universal_newlines=False, shell=None, istream=None)
+[DEBUG 10:07:31] git.cmd Popen(['git', 'diff', '--abbrev=40', '--full-index', '--raw'], cwd=/home/ruanzhonghai/work/causal-relation, universal_newlines=False, shell=None, istream=None)
+[DEBUG 10:07:31] git.cmd Popen(['git', 'cat-file', '--batch-check'], cwd=/home/ruanzhonghai/work/causal-relation, universal_newlines=False, shell=None, istream=<valid stream>)
+main.py:59: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3, and in 3.10 it will stop working
+  if isinstance(v, collections.Mapping):
+[INFO 10:07:31] root Saving to FileStorageObserver in /home/ruanzhonghai/work/results/sacred/3s5z_vs_3s6z/qmix_env=8_adam_td_lambda.
+[DEBUG 10:07:32] pymarl Using capture mode "fd"
+[INFO 10:07:32] pymarl Running command 'my_main'
+[INFO 10:07:32] pymarl Started run with ID "75"
+[DEBUG 10:07:32] pymarl Starting Heartbeat
+[DEBUG 10:07:32] my_main Started
+[INFO 10:07:32] my_main Experiment Parameters:
+[INFO 10:07:32] my_main 
+
+{   'GRF': False,
+    'action_selector': 'epsilon_greedy',
+    'agent': 'n_rnn',
+    'agent_output_type': 'q',
+    'alpha1': 0.1,
+    'alpha2': 1,
+    'anneal_intrin': 'Ture',
+    'anneal_speed': 2000000,
+    'batch_size': 64,
+    'batch_size_run': 4,
+    'beta1': 100,
+    'beta2': 0,
+    'buffer_cpu_only': True,
+    'buffer_size': 2500,
+    'checkpoint_path': '',
+    'critic_lr': 0.0005,
+    'cuda_num': 2,
+    'cuda_save': True,
+    'enemy_sample': 4,
+    'enemy_shape': 1,
+    'env': 'sc2',
+    'env_args': {   'continuing_episode': False,
+                    'debug': False,
+                    'difficulty': '7',
+                    'game_version': None,
+                    'heuristic_ai': False,
+                    'heuristic_rest': False,
+                    'map_name': '3s5z_vs_3s6z',
+                    'move_amount': 2,
+                    'obs_all_health': True,
+                    'obs_instead_of_state': False,
+                    'obs_last_action': False,
+                    'obs_own_health': True,
+                    'obs_pathing_grid': False,
+                    'obs_terrain_height': False,
+                    'obs_timestep_number': False,
+                    'replay_dir': '',
+                    'replay_prefix': '',
+                    'reward_death_value': 10,
+                    'reward_defeat': 0,
+                    'reward_negative_scale': 0.5,
+                    'reward_only_positive': True,
+                    'reward_scale': True,
+                    'reward_scale_rate': 20,
+                    'reward_sparse': False,
+                    'reward_win': 200,
+                    'seed': 125,
+                    'state_last_action': True,
+                    'state_timestep_number': False,
+                    'step_mul': 8},
+    'epsilon_anneal_time': 100000,
+    'epsilon_finish': 0.05,
+    'epsilon_start': 1.0,
+    'evaluate': False,
+    'gain': 0.01,
+    'gamma': 0.99,
+    'grad_norm_clip': 10,
+    'hypernet_embed': 64,
+    'i_one_clip': 0.002,
+    'intrin_ratio': 0.005,
+    'itrin_two_clip': 1,
+    'k': 4,
+    'label': 'CQMIX',
+    'learner': 'CQMIX_SMAC',
+    'learner_log_interval': 10000,
+    'load_step': 0,
+    'local_results_path': 'results',
+    'log_interval': 10000,
+    'lr': 0.001,
+    'mac': 'n_mac',
+    'mixer': 'qmix',
+    'mixing_embed_dim': 32,
+    'name': 'qmix_env=8_adam_td_lambda',
+    'obs_agent_id': True,
+    'obs_last_action': True,
+    'optim_alpha': 0.99,
+    'optim_eps': 1e-05,
+    'optimizer': 'adam',
+    'per_alpha': 0.6,
+    'per_beta': 0.4,
+    'predict_epoch': 25,
+    'project_name': 'Lazy_Essay',
+    'q_lambda': False,
+    'repeat_id': 1,
+    'return_priority': False,
+    'rnn_hidden_dim': 256,
+    'run': 'default',
+    'runner': 'parallel',
+    'runner_log_interval': 10000,
+    'sample_size': 16,
+    'save_model': False,
+    'save_model_interval': 200000,
+    'save_replay': True,
+    'seed': 125,
+    't_max': 13200000,
+    'target_update_interval': 200,
+    'td_lambda': 0.6,
+    'test_greedy': True,
+    'test_interval': 10000,
+    'test_nepisode': 32,
+    'use_cuda': True,
+    'use_int': False,
+    'use_layer_norm': False,
+    'use_orthogonal': False,
+    'use_per': False,
+    'use_tensorboard': False,
+    'wandb': True}
+
+[DEBUG 10:07:32] git.cmd Popen(['git', 'rev-parse', '--show-toplevel'], cwd=/home/ruanzhonghai/work/causal-relation, universal_newlines=False, shell=None, istream=None)
+[DEBUG 10:07:33] urllib3.connectionpool Starting new HTTPS connection (1): api.wandb.ai:443
+[DEBUG 10:07:34] urllib3.connectionpool https://api.wandb.ai:443 "POST /graphql HTTP/1.1" 200 1762
+[DEBUG 10:07:34] urllib3.connectionpool https://api.wandb.ai:443 "POST /graphql HTTP/1.1" 200 351
+wandb: Currently logged in as: ruanzhh. Use `wandb login --relogin` to force relogin
+[DEBUG 10:07:34] git.cmd Popen(['git', 'cat-file', '--batch-check'], cwd=/home/ruanzhonghai/work/causal-relation, universal_newlines=False, shell=None, istream=<valid stream>)
+wandb: wandb version 0.16.1 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.15.10
+wandb: Run data is saved locally in /home/ruanzhonghai/work/causal-relation/wandb/run-20231215_100734-lqe7isf9
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run seed_125_CQMIX
+wandb: ⭐️ View project at https://wandb.ai/ruanzhh/Lazy_Essay
+wandb: 🚀 View run at https://wandb.ai/ruanzhh/Lazy_Essay/runs/lqe7isf9
+[INFO 10:07:41] my_main Beginning training for 13200000 timesteps
+[INFO 10:07:41] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 36449 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-qcscb1e5/
+[INFO 10:07:41] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 36105 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-x7ddhfrq/
+[INFO 10:07:41] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 38779 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-xehyqa9y/
+[INFO 10:07:41] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 32791 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-859ltgb3/
+[INFO 10:07:41] absl Connecting to: ws://127.0.0.1:36449/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 36449 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-qcscb1e5/'
+[INFO 10:07:41] absl Connecting to: ws://127.0.0.1:32791/sc2api, attempt: 0, running: True
+[INFO 10:07:41] absl Connecting to: ws://127.0.0.1:36105/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 32791 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-859ltgb3/'
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+[INFO 10:07:41] absl Connecting to: ws://127.0.0.1:38779/sc2api, attempt: 0, running: True
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 36105 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-x7ddhfrq/'
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 38779 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-xehyqa9y/'
+Starting up...
+Starting up...
+Starting up...
+Starting up...
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+[INFO 10:07:42] absl Connecting to: ws://127.0.0.1:36449/sc2api, attempt: 1, running: True
+[INFO 10:07:42] absl Connecting to: ws://127.0.0.1:36105/sc2api, attempt: 1, running: True
+[INFO 10:07:42] absl Connecting to: ws://127.0.0.1:32791/sc2api, attempt: 1, running: True
+[INFO 10:07:42] absl Connecting to: ws://127.0.0.1:38779/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:36449
+Startup Phase 3 complete. Ready for commands.
+Listening on: 127.0.0.1:36105
+Startup Phase 3 complete. Ready for commands.
+Listening on: 127.0.0.1:38779
+Startup Phase 3 complete. Ready for commands.
+Listening on: 127.0.0.1:32791
+Startup Phase 3 complete. Ready for commands.
+[INFO 10:07:43] absl Connecting to: ws://127.0.0.1:36449/sc2api, attempt: 2, running: True
+[INFO 10:07:43] absl Connecting to: ws://127.0.0.1:36105/sc2api, attempt: 2, running: True
+[INFO 10:07:43] absl Connecting to: ws://127.0.0.1:38779/sc2api, attempt: 2, running: True
+[INFO 10:07:43] absl Connecting to: ws://127.0.0.1:32791/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:35514 accepted
+ReadyHandler: 127.0.0.1:35514 ready
+ConnectHandler: Request from 127.0.0.1:40562 accepted
+ReadyHandler: 127.0.0.1:40562 ready
+ConnectHandler: Request from 127.0.0.1:59674 accepted
+ConnectHandler: Request from 127.0.0.1:59524 accepted
+ReadyHandler: 127.0.0.1:59674 ready
+ReadyHandler: 127.0.0.1:59524 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Next launch phase started: 4
+Launching next game.
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+/home/ruanzhonghai/work/causal-relation/components/episode_buffer.py:103: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  v = th.tensor(v, dtype=dtype, device=self.device)
+[INFO 10:07:48] my_main t_env: 182 / 13200000
+[INFO 10:07:48] my_main Estimated time left: 2 hours, 44 minutes, 37 seconds. Time passed: 7 seconds[[INFO 10:09:29] my_main Updated target network
+[INFO 10:09:34] my_main t_env: 10333 / 13200000
+[INFO 10:09:34] my_main Estimated time left: 1 days, 14 hours, 21 minutes, 58 seconds. Time passed: 1 minutes, 53 second[I[INFO 10:11:06] my_main Updated target networ[I[INFO 10:11:19] my_main t_env: 20475 / 13200000
+[INFO 10:11:19] my_main Estimated time left: 1 days, 13 hours, 47 minutes, 23 seconds. Time passed: 3 minutes, 38 secon[I[INFO 10:12:40] my_main Updated target networ[I[INFO 10:13:03] my_main t_env: 30394 / 13200000
+[INFO 10:13:03] my_main Estimated time left: 1 days, 14 hours, 11 minutes, 4 seconds. Time passed: 5 minutes[INFO 10:14:0[INFO 10:14:15] my_main Updated ta[INFO 10:14:4[INFO 10:14:52] my_main t_env: 40568 / 13200000
+[INFO 10:14:52] my_main Estimated time left: 1 days, 15 hours, 7 minutes, 7 seconds. Time passed: 7 minutes, [INFO 10:15[INFO 10:15:52] my_main Updated targ[INFO 10:16[INFO 10:16:40] my_main t_env: 50735 / 13200000
+[INFO 10:16:40] my_main Estimated time left: 1 days, 15 hours, 2 minutes, 45 seconds. Time passed: 9 minutes, [INFO 10:1[INFO 10:17:28] my_main Updated targe[INFO 10:1[INFO 10:18:27] my_main t_env: 60831 / 13200000
+[INFO 10:18:27] my_main Estimated time left: 1 days, 14 hours, 27 minutes, 24 seconds. Time passed: 10 minutes, [INFO 10:18[INFO 10:19:02] my_main Updated targ[INFO 10:20[INFO 10:20:11] my_main t_env: 70911 / 13200000
+[INFO 10:20:11] my_main Estimated time left: 1 days, 13 hours, 42 minutes, 34 seconds. Time passed: 12 minutes, [INFO 10:20[INFO 10:20:32] my_main Updated targ[INFO 10:21[INFO 10:21:54] my_main Updated target network
+[INFO 10:21:59] my_main t_env: 81074 / 13200000
+[INFO 10:21:59] my_main Estimated time left: 1 days, 14 hours, 42 minutes, 47 seconds. Time passed: 14 minutes, [INFO 10:23[INFO 10:23:24] my_main Updated targ[INFO 10:23[INFO 10:23:44] my_main t_env: 91111 / 13200000
+[INFO 10:23:44] my_main Estimated time left: 1 days, 14 hours, 6 minutes, 29 seconds. Time passed: 16 minutes, [INFO 10:2[INFO 10:24:52] my_main Updated targe[INFO 10:2[INFO 10:25:27] my_main t_env: 101140 / 13200000
+[INFO 10:25:27] my_main Estimated time left: 1 days, 13 hours, 20 minutes, 39 seconds. Time passed: 17 minutes, 5[INFO 10:2[INFO 10:26:25] my_main Updated targe[INFO 10:2[INFO 10:27:16] my_main t_env: 111299 / 13200000
+[INFO 10:27:16] my_main Estimated time left: 1 days, 14 hours, 55 minutes, 11 seconds. Time passed: 19 minutes, 4[INFO 10:2[INFO 10:28:02] my_main Updated targe[INFO 10:2[INFO 10:29:02] my_main t_env: 121366 / 13200000
+[INFO 10:29:02] my_main Estimated time left: 1 days, 14 hours, 25 minutes, 44 seconds. Time passed: 21 minutes, 2[INFO 10:2[INFO 10:29:36] my_main Updated targe[INFO 10:3[INFO 10:30:54] my_main t_env: 131390 / 13200000
+[INFO 10:30:54] my_main Estimated time left: 1 days, 16 hours, 37 minutes, 50 seconds. Time passed: 23 minutes, [INFO 10:31[I[INFO 10:31:22] my_main Updated ta[INFO 10:32[INFO 10:32:48] my_main t_env: 141467 / 13200000
+[INFO 10:32:48] my_main Estimated time left: 1 days, 17 hours, 3 minutes, 25 seconds. Time passed: 25 minutes, [[INFO 10:3[INFO 10:33:06] my_main Updated targ[[INFO 10:3[INFO 10:34:42] my_main t_env: 151578 / 13200000
+[INFO 10:34:42] my_main Estimated time left: 1 days, 16 hours, 50 minutes, 27 seconds. Time passed: 27 minutes[I[INFO 10:3[INFO 10:34:59] my_main Updated tar[I[INFO 10:3[INFO 10:36:35] my_main Updated target network
+[INFO 10:36:35] my_main t_env: 161673 / 13200000
+[INFO 10:36:35] my_main Estimated time left: 1 days, 16 hours, 36 minutes, 10 seconds. Time passed: 29 minutes,[[INFO 10:3[INFO 10:38:30] my_main Updated target network
+[INFO 10:38:33] my_main t_env: 171708 / 13200000
+[INFO 10:38:33] my_main Estimated time left: 1 days, 18 hours, 23 minutes, 53 seconds. Time passed: 30 minutes, [[INFO 10:40:25] my_main Updated target network
+[INFO 10:40:31] my_main t_env: 181964 / 13200000
+[INFO 10:40:31] my_main Estimated time left: 1 days, 19 hours, 27 minutes, 4 seconds. Time passed: 32 minutes, 50 seconds[[INFO 10:42:32] my_main Updated target network
+[INFO 10:42:34] my_main t_env: 191984 / 13200000
+[INFO 10:42:34] my_main Estimated time left: 1 days, 20 hours, 17 minutes, 17 seconds. Time passed: 34 minutes, 53 second[I[INFO 10:44:41] my_main t_env: 202155 / 13200000
+[INFO 10:44:41] my_main Estimated time left: 1 days, 21 hours, 1 minutes, 54 seconds. Time passed: 36 minutes, 59 seconds
+[INFO 10:44:57] my_main Updated target network
+[INFO 10:46:42] my_main t_env: 212250 / 13200000
+[INFO 10:46:42] my_main Estimated time left: 1 days, 19 hours, 22 minutes, 0 seconds. Time passed: 39 minutes, 1 seconds
+[INFO 10:47:10] my_main Updated target network
+[INFO 10:48:53] my_main t_env: 222334 / 13200000
+[INFO 10:48:53] my_main Estimated time left: 1 days, 22 hours, 47 minutes, 0 seconds. Time passed: 41 minutes, 12 seconds
+RequestQuit command received.
+DataHandler: unable to parse websocket frame.
+Closing Application...
+CloseHandler: 127.0.0.1:40562 disconnected
+ResponseThread: No connection, dropping the response.
+[INFO 10:49:26] absl Shutdown gracefully.
+[INFO 10:49:26] absl Shutdown with return code: -15
+[INFO 10:49:26] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 33965 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-w3veuo5r/
+[INFO 10:49:26] absl Connecting to: ws://127.0.0.1:33965/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 33965 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-w3veuo5r/'
+Starting up...
+Startup Phase 1 complete
+[INFO 10:49:27] absl Connecting to: ws://127.0.0.1:33965/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:33965
+Startup Phase 3 complete. Ready for commands.
+[INFO 10:49:28] absl Connecting to: ws://127.0.0.1:33965/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:51748 accepted
+ReadyHandler: 127.0.0.1:51748 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:59524 disconnected
+[INFO 10:49:36] absl Shutdown gracefully.
+[INFO 10:49:36] absl Shutdown with return code: -15
+[INFO 10:49:36] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 42855 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-jqar786x/
+[INFO 10:49:36] absl Connecting to: ws://127.0.0.1:42855/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 42855 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-jqar786x/'
+Starting up...
+Startup Phase 1 complete
+[INFO 10:49:37] absl Connecting to: ws://127.0.0.1:42855/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:42855
+Startup Phase 3 complete. Ready for commands.
+[INFO 10:49:38] absl Connecting to: ws://127.0.0.1:42855/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:56426 accepted
+ReadyHandler: 127.0.0.1:56426 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 10:49:44] my_main Updated target network
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:35514 disconnected
+[INFO 10:49:52] absl Shutdown gracefully.
+[INFO 10:49:52] absl Shutdown with return code: -15
+[INFO 10:49:52] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 36597 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-bi0bp7ju/
+[INFO 10:49:52] absl Connecting to: ws://127.0.0.1:36597/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 36597 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-bi0bp7ju/'
+Starting up...
+Startup Phase 1 complete
+[INFO 10:49:53] absl Connecting to: ws://127.0.0.1:36597/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:36597
+Startup Phase 3 complete. Ready for commands.
+[INFO 10:49:54] absl Connecting to: ws://127.0.0.1:36597/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:47558 accepted
+ReadyHandler: 127.0.0.1:47558 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:59674 disconnected
+[INFO 10:50:03] absl Shutdown gracefully.
+[INFO 10:50:03] absl Shutdown with return code: -15
+[INFO 10:50:03] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 43863 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-y2x4gw3c/
+[INFO 10:50:03] absl Connecting to: ws://127.0.0.1:43863/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 43863 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-y2x4gw3c/'
+Starting up...
+Startup Phase 1 complete
+[INFO 10:50:04] absl Connecting to: ws://127.0.0.1:43863/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:43863
+Startup Phase 3 complete. Ready for commands.
+[INFO 10:50:05] absl Connecting to: ws://127.0.0.1:43863/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:41112 accepted
+ReadyHandler: 127.0.0.1:41112 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 10:51:31] my_main t_env: 232508 / 13200000
+[INFO 10:51:31] my_main Estimated time left: 2 days, 8 hours, 10 minutes, 5 seconds. Time passed: 43 minutes, 50 seconds
+[INFO 10:52:22] my_main Updated target network
+[INFO 10:53:46] my_main t_env: 242685 / 13200000
+[INFO 10:53:46] my_main Estimated time left: 1 days, 23 hours, 26 minutes, 0 seconds. Time passed: 46 minutes, 4 seconds
+[INFO 10:54:49] my_main Updated target network
+[INFO 10:55:56] my_main t_env: 252685 / 13200000
+[INFO 10:55:56] my_main Estimated time left: 1 days, 22 hours, 44 minutes, 39 seconds. Time passed: 48 minutes, 14 seconds
+[INFO 10:57:03] my_main Updated target network
+[INFO 10:58:07] my_main t_env: 262965 / 13200000
+[INFO 10:58:07] my_main Estimated time left: 1 days, 22 hours, 7 minutes, 56 seconds. Time passed: 50 minutes, 26 seconds
+[INFO 10:59:45] my_main Updated target network
+[INFO 11:00:22] my_main t_env: 273100 / 13200000
+[INFO 11:00:22] my_main Estimated time left: 1 days, 23 hours, 42 minutes, 17 seconds. Time passed: 52 minutes, 41 seconds
+[INFO 11:02:23] my_main Updated target network
+[INFO 11:02:36] my_main t_env: 283251 / 13200000
+[INFO 11:02:36] my_main Estimated time left: 1 days, 23 hours, 24 minutes, 44 seconds. Time passed: 54 minutes, 55 seconds
+[INFO 11:04:52] my_main t_env: 293296 / 13200000
+[INFO 11:04:52] my_main Estimated time left: 2 days, 30 minutes, 54 seconds. Time passed: 57 minutes, 11 seconds
+[INFO 11:05:33] my_main Updated target network
+[INFO 11:07:09] my_main t_env: 303429 / 13200000
+[INFO 11:07:09] my_main Estimated time left: 2 days, 15 minutes, 34 seconds. Time passed: 59 minutes, 28 seconds
+[INFO 11:08:29] my_main Updated target network
+[INFO 11:09:25] my_main t_env: 313478 / 13200000
+[INFO 11:09:25] my_main Estimated time left: 2 days, 28 minutes, 51 seconds. Time passed: 1 hours, 1 minutes, 44 seconds
+[INFO 11:11:40] my_main Updated target network
+[INFO 11:11:40] my_main t_env: 323744 / 13200000
+[INFO 11:11:40] my_main Estimated time left: 1 days, 23 hours, 6 minutes, 7 seconds. Time passed: 1 hours, 3 minutes, 59 seconds
+[INFO 11:13:55] my_main t_env: 333844 / 13200000
+[INFO 11:13:55] my_main Estimated time left: 1 days, 23 hours, 55 minutes, 39 seconds. Time passed: 1 hours, 6 minutes, 14 seconds
+[INFO 11:15:04] my_main Updated target network
+[INFO 11:16:13] my_main t_env: 344080 / 13200000
+[INFO 11:16:13] my_main Estimated time left: 2 days, 8 minutes, 45 seconds. Time passed: 1 hours, 8 minutes, 32 seconds
+[INFO 11:18:16] my_main Updated target network
+[INFO 11:18:41] my_main t_env: 354262 / 13200000
+[INFO 11:18:41] my_main Estimated time left: 2 days, 3 hours, 45 minutes, 38 seconds. Time passed: 1 hours, 11 minutes, 0 seconds
+[INFO 11:20:58] my_main t_env: 364497 / 13200000
+[INFO 11:20:58] my_main Estimated time left: 1 days, 23 hours, 40 minutes, 6 seconds. Time passed: 1 hours, 13 minutes, 17 seconds
+[INFO 11:21:37] my_main Updated target network
+[INFO 11:23:06] my_main t_env: 374591 / 13200000
+[INFO 11:23:06] my_main Estimated time left: 1 days, 21 hours, 19 minutes, 2 seconds. Time passed: 1 hours, 15 minutes, 25 seconds
+[INFO 11:24:59] my_main Updated target network
+[INFO 11:25:31] my_main t_env: 385049 / 13200000
+[INFO 11:25:31] my_main Estimated time left: 2 days, 1 hours, 21 minutes, 42 seconds. Time passed: 1 hours, 17 minutes, 50 seconds
+[INFO 11:27:49] my_main t_env: 395164 / 13200000
+[INFO 11:27:49] my_main Estimated time left: 2 days, 13 minutes, 21 seconds. Time passed: 1 hours, 20 minutes, 7 seconds
+[INFO 11:28:45] my_main Updated target network
+[INFO 11:30:07] my_main t_env: 405316 / 13200000
+[INFO 11:30:07] my_main Estimated time left: 2 days, 36 minutes, 8 seconds. Time passed: 1 hours, 22 minutes, 26 seconds
+[INFO 11:32:09] my_main Updated target network
+[INFO 11:32:33] my_main t_env: 415605 / 13200000
+[INFO 11:32:33] my_main Estimated time left: 2 days, 2 hours, 10 minutes, 18 seconds. Time passed: 1 hours, 24 minutes, 52 seconds
+[INFO 11:34:50] my_main t_env: 425913 / 13200000
+[INFO 11:34:50] my_main Estimated time left: 1 days, 23 hours, 18 minutes, 31 seconds. Time passed: 1 hours, 27 minutes, 9 seconds
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:51748 disconnected
+[INFO 11:35:01] absl Shutdown gracefully.
+[INFO 11:35:01] absl Shutdown wi[INFO 11:36:04] my_main t_env: 435329 / 13200000
+[INFO 11:36:04] my_main Estimated time left: 2 days, 2 hours, 45 minutes, 39 seconds. Time passed: 1 hours, 28 minutes, 29 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:48364 disconnected
+[INFO 11:36:17] absl Shutdown gracefully.
+[INFO 11:36:17] absl Shutdown with return code: -15
+[INFO 11:36:17] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 46741 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-bucr7pyc/
+[INFO 11:36:17] absl Connecting to: ws://127.0.0.1:46741/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 46741 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-bucr7pyc/'
+Starting up...
+Startup Phase 1 complete
+[INFO 11:36:18] absl Connecting to: ws://127.0.0.1:46741/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:46741
+Startup Phase 3 complete. Ready for commands.
+[INFO 11:36:19] absl Connecting to: ws://127.0.0.1:46741/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:44002 accepted
+ReadyHandler: 127.0.0.1:44002 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:38118 disconnected
+[INFO 11:37:06] absl Shutdown gracefully.
+[INFO 11:37:06] absl Shutdown with return code: -15
+[INFO 11:37:06] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 35041 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-kugqdv_c/
+[INFO 11:37:06] absl Connecting to: ws://127.0.0.1:35041/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 35041 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-kugqdv_c/'
+Starting up...
+Startup Phase 1 complete
+[INFO 11:37:07] absl Connecting to: ws://127.0.0.1:35041/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:35041
+Startup Phase 3 complete. Ready for commands.
+[INFO 11:37:08] absl Connecting to: ws://127.0.0.1:35041/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:34260 accepted
+ReadyHandler: 127.0.0.1:34260 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next laun[INFO 11:37:20] my_main t_env: 435978 / 13200000
+[INFO 11:37:20] my_main Estimated time left: 2 days, 4 hours, 50 minutes, 11 seconds. Time passed: 1 hours, 29 minutes, 39 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:56426 disconnected
+[INFO 11:37:55] absl Shutdown gracefully.
+[INFO 11:37:55] absl Shutdown with return code: -15
+[INFO 11:37:55] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 45647 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-kg54gbvi/
+[INFO 11:37:55] absl Connecting to: ws://127.0.0.1:45647/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 45647 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-kg54gbvi/'
+Starting up...
+Startup Phase 1 complete
+[INFO 11:37:56] absl Connecting to: ws://127.0.0.1:45647/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:45647
+Startup Phase 3 complete. Ready for commands.
+[INFO 11:37:57] absl Connecting to: ws://127.0.0.1:45647/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:50762 accepted
+ReadyHandler: 127.0.0.1:50762 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+RequestQuit command received.
+DataHandler: unable to parse websocket frame.
+Closing Application...
+CloseHandler: 127.0.0.1:41112 disconnected
+ResponseThread: No connection, dropping the response.
+[INFO 11:39:06] absl Shutdown gracefully.
+[INFO 11:39:06] absl Shutdown with return code: -15
+[INFO 11:39:06] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 34319 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-vbgx2aak/
+[INFO 11:39:06] absl Connecting to: ws://127.0.0.1:34319/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 34319 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-vbgx2aak/'
+Starting up...
+Startup Phase 1 complete
+[INFO 11:39:07] absl Connecting to: ws://127.0.0.1:34319/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:34319
+Startup Phase 3 complete. Ready for commands.
+[INFO 11:39:08] absl Connecting to: ws://127.0.0.1:34319/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:38782 accepted
+ReadyHandler: 127.0.0.1:38782 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 11:39:46] my_main Updated target network
+[INFO 11:39:46] my_main t_env: 445982 / 13200000
+[INFO 11:39:46] my_main Estimated time left: 2 days, 3 hours, 35 minutes, 19 seconds. Time passed: 1 hours, 32 minutes, 5 seconds
+[INFO 11:42:04] my_main t_env: 456083 / 13200000
+[INFO 11:42:04] my_main Estimated time left: 2 days, 29 minutes, 22 seconds. Time passed: 1 hours, 34 minutes, 23 seconds
+[INFO 11:43:34] my_main Updated target network
+[INFO 11:44:24] my_main t_env: 466218 / 13200000
+[INFO 11:44:24] my_main Estimated time left: 2 days, 54 minutes, 10 seconds. Time passed: 1 hours, 36 minutes, 43 seconds
+[INFO 11:46:41] my_main t_env: 476286 / 13200000
+[INFO 11:46:41] my_main Estimated time left: 1 days, 23 hours, 51 minutes, 23 seconds. Time passed: 1 hours, 39 minutes, 0 seconds
+[INFO 11:47:06] my_main Updated target network
+[INFO 11:48:52] my_main t_env: 486783 / 13200000
+[INFO 11:48:52] my_main Estimated time left: 1 days, 20 hours, 11 minutes, 48 seconds. Time passed: 1 hours, 41 minutes, 11 seconds
+[INFO 11:50:29] my_main Updated target network
+[INFO 11:51:14] my_main t_env: 497098 / 13200000
+[INFO 11:51:14] my_main Estimated time left: 2 days, 29 minutes, 23 seconds. Time passed: 1 hours, 43 minutes, 33 seconds
+[INFO 11:53:27] my_main t_env: 507344 / 13200000
+[INFO 11:53:27] my_main Estimated time left: 1 days, 21 hours, 48 minutes, 7 seconds. Time passed: 1 hours, 45 minutes, 46 seconds
+[INFO 11:54:04] my_main Updated target network
+[INFO 11:55:39] my_main t_env: 517350 / 13200000
+[INFO 11:55:39] my_main Estimated time left: 1 days, 22 hours, 32 minutes, 47 seconds. Time passed: 1 hours, 47 minutes, 58 seconds
+[INFO 11:57:23] my_main Updated target network
+[INFO 11:57:47] my_main t_env: 527490 / 13200000
+[INFO 11:57:47] my_main Estimated time left: 1 days, 20 hours, 27 minutes, 24 seconds. Time passed: 1 hours, 50 minutes, 6 seconds
+[INFO 11:59:54] my_main t_env: 537529 / 13200000
+[INFO 11:59:54] my_main Estimated time left: 1 days, 20 hours, 19 minutes, 57 seconds. Time passed: 1 hours, 52 minutes, 13 seconds
+[INFO 12:01:06] my_main Updated target network
+[INFO 12:02:10] my_main t_env: 547972 / 13200000
+[INFO 12:02:10] my_main Estimated time left: 1 days, 21 hours, 49 minutes, 16 seconds. Time passed: 1 hours, 54 minutes, 29 seconds
+[INFO 12:04:24] my_main t_env: 558112 / 13200000
+[INFO 12:04:24] my_main Estimated time left: 1 days, 22 hours, 29 minutes, 33 seconds. Time passed: 1 hours, 56 minutes, 43 seconds
+[INFO 12:04:59] my_main Updated target network
+[INFO 12:06:34] my_main t_env: 568391 / 13200000
+[INFO 12:06:34] my_main Estimated time left: 1 days, 20 hours, 12 minutes, 36 seconds. Time passed: 1 hours, 58 minutes, 53 seconds
+[INFO 12:08:36] my_main Updated target network
+[INFO 12:08:40] my_main t_env: 578811 / 13200000
+[INFO 12:08:40] my_main Estimated time left: 1 days, 18 hours, 36 minutes, 39 seconds. Time passed: 2 hours, 59 seconds
+[INFO 12:10:49] my_main t_env: 588878 / 13200000
+[INFO 12:10:49] my_main Estimated time left: 1 days, 20 hours, 46 minutes, 52 seconds. Time passed: 2 hours, 3 minutes, 8 seconds
+[INFO 12:12:31] my_main Updated target network
+[INFO 12:12:58] my_main t_env: 599010 / 13200000
+[INFO 12:12:58] my_main Estimated time left: 1 days, 20 hours, 42 minutes, 19 seconds. Time passed: 2 hours, 5 minutes, 17 seconds
+[INFO 12:15:05] my_main t_env: 609268 / 13200000
+[INFO 12:15:05] my_main Estimated time left: 1 days, 19 hours, 12 minutes, 45 seconds. Time passed: 2 hours, 7 minutes, 24 seconds
+[INFO 12:16:34] my_main Updated target network
+[INFO 12:17:17] my_main t_env: 619377 / 13200000
+[INFO 12:17:17] my_main Estimated time left: 1 days, 21 hours, 39 minutes, 3 seconds. Time passed: 2 hours, 9 minutes, 36 seconds
+RequestQuit command received.
+DataHandler: unable to parse websocket frame.
+Closing Application...
+CloseHandler: 127.0.0.1:55086 disconnected
+[INFO 12:19:14] absl Shutdown gracefully.
+[INFO 12:19:14] absl Shutdown with return code: -15
+[INFO 12:19:14] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 43211 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-5awpss_i/
+[INFO 12:19:14] absl Connecting to: ws://127.0.0.1:43211/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build:RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:33386 disconnected
+[INFO 12:20:30] absl Shutdown gracefully.
+[INFO 12:20:30] absl Shutdown with return code: -15
+[INFO 12:20:30] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 41957 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-g5t95ma6/
+[INFO 12:20:30] absl Connecting to: ws://127.0.0.1:41957/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 41957 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-g5t95ma6/'
+Starting up...
+Startup Phase 1 complete
+[INFO 12:20:31] absl Connecting to: ws://127.0.0.1:41957/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:41957
+Startup Phase 3 complete. Ready for commands.
+[INFO 12:20:32] absl Connecting to: ws://127.0.0.1:41957/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:51784 accepted
+ReadyHandler: 127.0.0.1:51784 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 12:20:42] my_main t_env: 639111 / 13200000
+[INFO 12:20:42] my_main Estimated time left: 1 days, 23 hours, 27 minutes, 6 seconds. Time passed: 2 hours, 13 minutes, 13 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:34676 disconnected
+[INFO 12:21:02] absl Shutdown gracefully.
+[INFO 12:21:02] absl Shutdown with return code: -15
+[INFO 12:21:02] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 43447 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-ma_f5akh/
+[INFO 12:21:02] absl Connecting to: ws://127.0.0.1:43447/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 43447 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-ma_f5akh/'
+Starting up...
+Startup Phase 1 complete
+[INFO 12:21:03] absl Connecting to: ws://127.0.0.1:43447/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:43447
+Startup Phase 3 complete. Ready for commands.
+[INFO 12:21:04] absl Connecting to: ws://127.0.0.1:43447/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:42158 accepted
+ReadyHandler: 127.0.0.1:42158 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disaRequestQuit command received.
+DataHandler: unable to parse websocket frame.
+Closing Application...
+CloseHandler: 127.0.0.1:50762 disconnected
+ResponseThread: No connection, dropping the response.
+[INFO 12:21:24] absl Shutdown gracefully.
+[INFO 12:21:24] absl Shutdown with return code: -15
+[INFO 12:21:24] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 39659 -dataDir /home/ruanzhonghai/StarCrafRequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:43910 disconnected
+ResponseThread: No connection, dropping the response.
+[INFO 12:21:46] absl Shutdown gracefully.
+[INFO 12:21:46] absl Shutdown with return code: -15
+[INFO 12:21:46] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 42547 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-nkm4dow9/
+[INFO 12:21:46] absl Connecting to: ws://127.0.0.1:42547/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 42547 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-nkm4dow9/'
+Starting up...
+Startup Phase 1 complete
+[INFO 12:21:47] absl Connecting to: ws://127.0.0.1:42547/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:42547
+Startup Phase 3 complete. Ready for commands.
+[INFO 12:21:48] absl Connecting to: ws://127.0.0.1:42547/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:45822 accepted
+ReadyHandler: 127.0.0.1:45822 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disa[INFO 12:21:59] my_main t_env: 640392 / 13200000
+[INFO 12:21:59] my_main Estimated time left: 2 days, 46 minutes, 1 seconds. Time passed: 2 hours, 14 minutes, 18 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:38782 disconnected
+[INFO 12:23:32] absl Shutdown gracefully.
+[INFO 12:23:32] absl Shutdown with return code: -15
+[INFO 12:23:32] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 41255 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-8a4kd_tt/
+[INFO 12:23:32] absl Connecting to: ws://127.0.0.1:41255/sc2api, attempt: 0, ruRequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:43244 disconnected
+[INFO 12:24:06] absl Shutdown gracefully.
+[INFO 12:24:06] absl Shutdown with return code: -15
+[INFO 12:24:06] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 45399 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-2c1y4id0/
+[INFO 12:24:06] absl Connecting to: ws://127.0.0.1:45399/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 45399 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-2c1y4id0/'
+Starting up...
+Startup Phase 1 complete
+[INFO 12:24:07] absl Connecting to: ws://127.0.0.1:45399/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:45399
+Startup Phase 3 complete. Ready for commands.
+[INFO 12:24:08] absl Connecting to: ws://127.0.0.1:45399/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:50988 accepted
+ReadyHandler: 127.0.0.1:50988 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature[INFO 12:24:17] my_main t_env: 650663 / 13200000
+[INFO 12:24:17] my_main Estimated time left: 1 days, 23 hours, 4 minutes, 52 seconds. Time passed: 2 hours, 16 minutes, 36 seconds
+[INFO 12:25:18] my_main Updated target network
+[INFO 12:26:30] my_main t_env: 661058 / 13200000
+[INFO 12:26:30] my_main Estimated time left: 1 days, 20 hours, 18 minutes, 22 seconds. Time passed: 2 hours, 18 minutes, 49 seconds
+[INFO 12:28:32] my_main t_env: 671478 / 13200000
+[INFO 12:28:32] my_main Estimated time left: 1 days, 16 hours, 45 minutes, 42 seconds. Time passed: 2 hours, 20 minutes, 51 seconds
+[INFO 12:29:27] my_main Updated target network
+[INFO 12:30:41] my_main t_env: 681565 / 13200000
+[INFO 12:30:41] my_main Estimated time left: 1 days, 20 hours, 36 minutes, 42 seconds. Time passed: 2 hours, 23 minutes, 0 seconds
+[INFO 12:32:50] my_main t_env: 691693 / 13200000
+[INFO 12:32:50] my_main Estimated time left: 1 days, 20 hours, 9 minutes, 24 seconds. Time passed: 2 hours, 25 minutes, 9 seconds
+[INFO 12:33:27] my_main Updated target network
+[INFO 12:34:54] my_main t_env: 701728 / 13200000
+[INFO 12:34:54] my_main Estimated time left: 1 days, 18 hours, 49 minutes, 5 seconds. Time passed: 2 hours, 27 minutes, 13 seconds
+[INFO 12:36:52] my_main t_env: 711931 / 13200000
+[INFO 12:36:52] my_main Estimated time left: 1 days, 16 hours, 9 minutes, 1 seconds. Time passed: 2 hours, 29 minutes, 11 seconds
+[INFO 12:37:25] my_main Updated target network
+[INFO 12:38:55] my_main t_env: 722057 / 13200000
+[INFO 12:38:55] my_main Estimated time left: 1 days, 18 hours, 5 minutes, 3 seconds. Time passed: 2 hours, 31 minutes, 14 seconds
+[INFO 12:40:57] my_main Updated target network
+[INFO 12:40:59] my_main t_env: 732163 / 13200000
+[INFO 12:40:59] my_main Estimated time left: 1 days, 18 hours, 39 minutes, 3 seconds. Time passed: 2 hours, 33 minutes, 18 seconds
+[INFO 12:43:05] my_main t_env: 742255 / 13200000
+[INFO 12:43:05] my_main Estimated time left: 1 days, 19 hours, 13 minutes, 47 seconds. Time passed: 2 hours, 35 minutes, 24 seconds
+[INFO 12:44:47] my_main Updated target network
+[INFO 12:45:09] my_main t_env: 752312 / 13200000
+[INFO 12:45:09] my_main Estimated time left: 1 days, 18 hours, 31 minutes, 40 seconds. Time passed: 2 hours, 37 minutes, 28 seconds
+[INFO 12:47:14] my_main t_env: 762366 / 13200000
+[INFO 12:47:14] my_main Estimated time left: 1 days, 18 hours, 52 minutes, 26 seconds. Time passed: 2 hours, 39 minutes, 33 seconds
+[INFO 12:48:43] my_main Updated target network
+[INFO 12:49:19] my_main t_env: 772479 / 13200000
+[INFO 12:49:19] my_main Estimated time left: 1 days, 18 hours, 49 minutes, 3 seconds. Time passed: 2 hours, 41 minutes, 38 seconds
+[INFO 12:51:12] my_main t_env: 782562 / 13200000
+[INFO 12:51:12] my_main Estimated time left: 1 days, 14 hours, 36 minutes, 0 seconds. Time passed: 2 hours, 43 minutes, 31 seconds
+[INFO 12:52:35] my_main Updated target network
+[INFO 12:53:14] my_main t_env: 792833 / 13200000
+[INFO 12:53:14] my_main Estimated time left: 1 days, 17 hours, 1 minutes, 58 seconds. Time passed: 2 hours, 45 minutes, 33 seconds
+[INFO 12:55:15] my_main t_env: 803113 / 13200000
+[INFO 12:55:15] my_main Estimated time left: 1 days, 16 hours, 18 minutes, 2 seconds. Time passed: 2 hours, 47 minutes, 33 seconds
+[INFO 12:56:33] my_main Updated target network
+[INFO 12:57:19] my_main t_env: 813415 / 13200000
+[INFO 12:57:19] my_main Estimated time left: 1 days, 17 hours, 34 minutes, 40 seconds. Time passed: 2 hours, 49 minutes, 38 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:45828 disconnected
+[INFO 12:59:13] absl Shutdown gracefully.
+[INFO 12:59:13] absl Shutdown with return code: -15
+[INFO 12:59:13] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base756[INFO 13:01:10] my_main t_env: 821635 / 13200000
+[INFO 13:01:10] my_main Estimated time left: 1 days, 18 hours, 2 minutes, 47 seconds. Time passed: 2 hours, 53 minutes, 42 seconds
+[INFO 13:02:55] my_main Updated target network
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:51784 disconnected
+[INFO 13:02:57] absl Shutdown gracefully.
+[INFO 13:02:57] absl Shutdown with return code: -15
+[INFO 13:02:57] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 43961 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-n5ftkvd8/
+[INFO 13:02:57] absl Connecting to: ws://127.0.0.1:43961/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 43961 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-n5ftkvd8/'
+Starting up...
+Startup Phase 1 complete
+[INFO 13:02:58] absl Connecting to: ws://127.0.0.1:43961/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:43961
+Startup Phase 3 complete. Ready for commands.
+[INFO 13:02:59] absl Connecting to: ws://127.0.0.1:43961/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:41728 accepted
+ReadyHandler: 127.0.0.1:41728 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 13:03:22] my_main t_env: 831695 / 13200000
+[INFO 13:03:22] my_main Estimated time left: 1 days, 20 hours, 53 minutes, 0 seconds. Time passed: 2 hours, 55 minutes, 54 seconds
+RequestQuit command received.
+DataHandler: unable to parse websocket frame.
+Closing Application...
+CloseHandler: 127.0.0.1:42158 disconnected
+[INFO 13:05:17] absl Shutdown gracefully.
+[INFO 13:05:17] absl Shutdown with return code: -15
+[INFO 13:05:17] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 34691 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-h5hcctw6/
+[INFO 13:05:17] absl Connecting to: ws://127.0.0.1:34691/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 34691 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-h5hcctw6/'
+Starting up...
+Startup Phase 1 complete
+[INFO 13:05:18] absl Connecting to: ws://127.0.0.1:34691/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:34691
+Startup Phase 3 complete. Ready for commands.
+[INFO 13:05:19] absl Connecting to: ws://127.0.0.1:34691/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:48708 accepted
+ReadyHandler: 127.0.0.1:48708 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 13:05:40] my_main t_env: 841957 / 13200000
+[INFO 13:05:40] my_main Estimated time left: 1 days, 22 hours, 8 minutes, 46 seconds. Time passed: 2 hours, 58 minutes, 12 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:45822 disconnected
+[INFO 13:05:40] absl Shutdown gracefully.
+[INFO 13:05:40] absl Shutdown with return code: -15
+[INFO 13:05:40] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 43507 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-v3_hyw7s/
+[INFO 13:05:40] absl Connecting to: ws://127.0.0.1:43507/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 43507 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-v3_hyw7s/'
+Starting up...
+Startup Phase 1 complete
+[INFO 13:05:41] absl Connecting to: ws://127.0.0.1:43507/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:43507
+Startup Phase 3 complete. Ready for commands.
+[INFO 13:05:42] absl Connecting to: ws://127.0.0.1:43507/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:41430 accepted
+ReadyHandler: 127.0.0.1:41430 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 13:07:13] my_main Updated target network
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:50988 disconnected
+[INFO 13:07:23] absl Shutdown gracefully.
+[INFO 13:07:23] absl Shutdown with return code: -15
+[INFO 13:07:23] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 41519 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-q9ab2hg5/
+[INFO 13:07:23] absl Connecting to: ws://127.0.0.1:41519/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 41519 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-q9ab2hg5/'
+Starting up...
+Startup Phase 1 complete
+[INFO 13:07:24] absl Connecting to: ws://127.0.0.1:41519/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:41519
+Startup Phase 3 complete. Ready for commands.
+[INFO 13:07:25] absl Connecting to: ws://127.0.0.1:41519/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:43148 accepted
+ReadyHandler: 127.0.0.1:43148 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.js[INFO 13:07:43] my_main t_env: 864335 / 13200000
+[INFO 13:07:43] my_main Estimated [INFO 13:07:59] my_main t_env: 852088 / 13200000
+[INFO 13:07:59] my_main Estimated ti[INFO 13:08:48] my_main Updated target network
+[INFO 13:09:44] my_main t_env: 87470[INFO 13:10:04] my_main t_env: 862210 / 13200000
+[INFO 13:10:04] my_main Estimated time left: 1 days, 18 hours, 17 minutes, 20 seconds. Time pa[INFO 13:11:48] my_main t_env: 884838 / 13200000
+[INFO 13:11:48] my_main Estimated t[INFO 13:12:08] my_main t_env: 872273 / 13200000
+[INFO 13:12:08] my_main Estimated time left: [INFO 13:12:52] my_main Updated target network
+[INFO 13:13:49] my_main t_env: 895138 [INFO 13:14:10] my_main t_env: 882499 / 13200000
+[INFO 13:14:10] my_main Estimated time left: 1 days, 16 hours, 53 minutes, 2 seconds. Time [INFO 13:15:57] my_main t_env: 905441 / 13200000
+[INFO 13:15:57] my_main Estimated tim[INFO 13:16:09] my_main t_env: 892676 / 13200000
+[INFO 13:16:09] my_main Estimated time left:[INFO 13:16:58] my_main Updated target network
+[INFO 13:17:59] my_main t_env: 915697 / [INFO 13:18:12] my_main t_env: 902938 / 13200000
+[INFO 13:18:12] my_main Estimated time left: 1 days, 17 hours, 4 minutes, 10 seconds. Time p[INFO 13:20:06] my_main t_env: 925915 / 13200000
+[INFO 13:20:06] my_main Estimated tim[INFO 13:20:12] my_main t_env: 913117 / 13200000
+[INFO 13:20:12] my_main Estimated time left: 1[INFO 13:21:09] my_main Updated target network
+[INFO 13:22:08] my_main t_env: 936084 [INFO 13:22:15] my_main t_env: 923169 / 13200000
+[INFO 13:22:15] my_main Estimated time left: 1 days, 17 hours, 52 minutes, 11 seconds. Time pa[INFO 13:24:15] my_main t_env: 946475 / 13200000
+[INFO 13:24:15] my_main Estimated ti[INFO 13:24:17] my_main t_env: 933183 / 13200000
+[INFO 13:24:17] my_main Estimated time left: 1[INFO 13:25:13] my_main Updated target network
+[INFO 13:26:19] my_main t_env: 956691 / 13200000
+[INFO 13:26:19] my_main Estimated time left: 1 days, 17 hours, 11 minutes, 47 seconds. Time passed: 3 hours, 18 minutes, 38 seconds
+[INFO 13:28:22] my_main t_env: 966886 / 13200000
+[INFO 13:28:22] my_main Estimated time left: 1 days, 16 hours, 57 minutes, 4 seconds. Time passed: 3 hours, 20 minutes, 40 seconds
+[INFO 13:29:10] my_main Updated target network
+[INFO 13:30:29] my_main t_env: 977272 / 13200000
+[INFO 13:30:29] my_main Estimated time left: 1 days, 17 hours, 33 minutes, 42 seconds. Time passed: 3 hours, 22 minutes, 48 seconds
+[INFO 13:32:23] my_main t_env: 987303 / 13200000
+[INFO 13:32:23] my_main Estimated t[INFO 13:32:24] my_main t_env: 973882 / 13200000
+[INFO 13:32:24] my_main Estimated time left: 1 d[INFO 13:33:27] my_main Updated target network
+[INFO 13:34:26] my_main t_env: 997652[INFO 13:34:28] my_main t_env: 984014 / 13200000
+[INFO 13:34:28] my_main Estimated time left: 1 days, 17 hours, 35 minutes, 33 seconds. Time pa[INFO 13:36:32] my_main t_env: 1007904 / 13200000
+[INFO 13:36:32] my_main Estimated [INFO 13:36:34] my_main t_env: 994374 / 13200000
+[INFO 13:36:34] my_main Estimated time left: 1 da[INFO 13:37:36] my_main Updated target network
+RequestQuit command received.
+Data[INFO 13:38:40] my_main t_env: 1004786 / 13200000
+[INFO 13:38:40] my_main Estimated time left: 1 days, 17 hours, 8 minutes, 2 seconds. Time passed: 3 hours, 31 minutes, 12 seconds
+[INFO 13:39:55] my_main Updated target network
+[INFO 13:40:45] my_main t_env: 1015119 / 13200000
+[INFO 13:40:45] my_main Estimated time left: 1 days, 16 hours, 55 minutes, 32 seconds. Time passed: 3 hours, 33 minutes, 17 seconds
+[INFO 13:42:45] my_main t_env: 1025347 / 13200000
+[INFO 13:42:45] my_main Estimated time left: 1 days, 15 hours, 43 minutes, 1 seconds. Time passed: 3 hours, 35 minutes, 17 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:41728 disconnected
+ResponseThread: No connection, dropping the response.
+[INFO 13:43:24] absl Shutdown gracefully.
+[INFO 13:43:24] absl Shutdown with return code: -15
+[INFO 13:43:24] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 37557 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-6u2iodnq/
+[INFO 13:43:24] absl Connecting to: ws://127.0.0.1:37557/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 37557 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-6u2iodnq/'
+Starting up...
+Startup Phase 1 complete
+[INFO 13:43:25] absl Connecting to: ws://127.0.0.1:37557/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:37557
+Startup Phase 3 complete. Ready for commands.
+[INFO 13:43:26] absl Connecting to: ws://127.0.0.1:37557/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:33164 accepted
+ReadyHandler: 127.0.0.1:33164 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:48708 disconnected
+[INFO 13:43:35] absl Shutdown gracefully.
+[INFO 13:43:35] absl Shutdown with return code: -15
+[INFO 13:43:35] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 39791 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-h1_lrpk1/
+[INFO 13:43:35] absl Connecting to: ws://127.0.0.1:39791/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 39791 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-h1_lrpk1/'
+Starting up...
+Startup Phase 1 complete
+[INFO 13:43:36] absl Connecting to: ws://127.0.0.1:39791/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:39791
+Startup Phase 3 complete. Ready for commands.
+[INFO 13:43:37] absl Connecting to: ws://127.0.0.1:39791/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:40568 accepted
+ReadyHandler: 127.0.0.1:40568 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 13:44:20] my_main Updated target network
+[INFO 13:45:01] my_main t_env: 1035361 / 13200000
+[INFO 13:45:01] my_main Estimated time left: 1 days, 21 hours, 44 minutes, 45 seconds. Time passed: 3 hours, 37 minutes, 33 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:41430 disconnected
+[INFO 13:45:20] absl Shutdown gracefully.
+[INFO 13:45:20] absl Shutdown with return code: -15
+[INFO 13:45:20] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 38365 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-pk9k20q0/
+[INFO 13:45:20] absl Connecting to: ws://127.0.0.1:38365/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 38365 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-pk9k20q0/'
+Starting up...
+Startup Phase 1 complete
+[INFO 13:45:21] absl Connecting to: ws://127.0.0.1:38365/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:38365
+Startup Phase 3 complete. Ready for commands.
+[INFO 13:45:22] absl Connecting to: ws://127.0.0.1:38365/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:41262 accepted
+ReadyHandler: 127.0.0.1:41262 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:43148 disconnected
+[INFO 13:46:45] absl Shutdown gracefully.
+[INFO 13:46:45] absl Shutdown with return code: -15
+[INFO 13:46:45] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 39373 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-wjenp4sa/
+[INFO 13:46:45] absl Connecting to: ws://127.0.0.1:39373/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 39373 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-wjenp4sa/'
+Starting up...
+Startup Phase 1 complete
+[INFO 13:46:46] absl Connecting to: ws://127.0.0.1:39373/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:39373
+Startup Phase 3 complete. Ready for commands.
+[INFO 13:46:47] absl Connecting to: ws://127.0.0.1:39373/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:56104 accepted
+ReadyHandler: 127.0.0.1:56104 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 13:47:10] my_main t_env: 1045397 / 13200000
+[INFO 13:47:10] my_main [INFO 13:47:21] my_main t_env: 1059410 / 13200000
+[INFO 13:47:21] my_main Estimated time left: 1 days, 17 ho[INFO 13:48:45] my_main Updated target network
+[INFO 13:49:09] my_main t_e[INFO 13:49:25] my_main t_env: 1069586 / 13200000
+[INFO 13:49:25] my_main Estimated time left: 1 days, 16 hours, 59 minutes, 13 seconds. Time passed: 3 hou[INFO 13:51:09] my_main t_env: 1065809 / 13200000
+[INFO 13:51:09] my_main [INFO 13:51:22] my_main t_env: 1079708 / 13200000
+[INFO 13:51:22] my_main Estimated time left: 1 days, 14 ho[INFO 13:53:00] my_main Updated target network
+[INFO 13:53:11] my_main t_e[INFO 13:53:19] my_main t_env: 1090057 / 13200000
+[INFO 13:53:19] my_main Estimated time left: 1 days, 14 hours, 3 minutes, 34 seconds. Time passed: 3 hour[INFO 13:55:15] my_main t_[INFO 13:55:18] my_main Updated target network
+[INFO 13:55:18] my_main t_env: 1100114 / 13200000
+[INFO 13:55:18] my_main Estimated time left: 1 days, 15 ho[INFO 13:57:10] my_main Updated target network
+[INFO 13:57:21] my_main t_env: 1096597 / 13200000
+[INFO 13:57:21] my_main Estimated time left: 1 days, 16 hours, 59 minutes, 47 seconds. Time passed: 3 hours, 49 minutes, 53 seconds
+[INFO 13:59:21] my_main t_env: 1106624 / 13200000
+[INFO 13:59:21] my_main Estimated time left: 1 days, 16 hours, 14 minutes, 29 seconds. Time passed: 3 hours, 51 minutes, 53 seconds
+[INFO 14:01:21] my_main t_env: 1116715 / 13200000
+[INFO 14:01:21] my_main[INFO 14:01:23] my_main t_env: 1130742 / 13200000
+[INFO 14:01:23] my_main Estimated time left: 1 days, 16 hou[INFO 14:01:55] my_main Updated target network
+[INFO 14:03:23] my_main t_env: 1126910 / 13200000
+[INFO 14:03:23] my_main Estimated time left: 1 days, 16 hours, 41 seconds. Time passed: 3 hours, 55 minutes, 55 seconds
+[INFO 14:05:26] my_main t_env: 1137238 / 13200000
+[INFO 14:05:26] my_main Estimated time left: 1 days, 16 hours, 4 minutes, 25 seconds. Time passed: 3 hours, 57 minutes, 58 seconds
+[INFO 14:06:05] my_main Updated target network
+[INFO 14:07:31] my_main t_env: 1147488 / 13200000
+[INFO 14:07:31] my_main Estimated time left: 1 days, 16 hours, 48 minutes, 37 seconds. Time passed: 4 hours, 3 seconds
+[INFO 14:09:33] my_main t_env: 1157657 / 13200000
+[INFO 14:09:33] my_main Estimated time left: 1 days, 16 hours, 6 minutes, 44 seconds. Time passed: 4 hours, 2 minutes, 5 seconds
+[INFO 14:10:13] my_main Updated target network
+[INFO 14:11:36] my_main t_env: 1167815 / 13200000
+[INFO 14:11:36] my_main Estimated time left: 1 days, 16 hours, 19 minutes, 41 seconds. Time passed: 4 hours, 4 minutes, 7 seconds
+[INFO 14:13:34] my_main t_env: 1178131 / 13200000
+[INFO 14:13:34] my_main Estimated time left: 1 days, 14 hours, 25 minutes, 13 seconds. Time passed: 4 hours, 6 minutes, 6 seconds
+[INFO 14:14:36] my_main Updated target network
+[INFO 14:15:37] my_main t_env: 1188646 / 13200000
+[INFO 14:15:37] my_main Estimated time left: 1 days, 14 hours, 57 minutes, 58 seconds. Time passed: 4 hours, 8 minutes, 9 seconds
+[INFO 14:17:42] my_main t_env: 1198757 / 13200000
+[INFO 14:17:42] my_main Estimated time left: 1 days, 17 hours, 11 minutes, 18 seconds. Time passed: 4 hours, 10 minutes, 14 seconds
+[INFO 14:18:54] my_main Updated target network
+[INFO 14:19:47] my_main t_env: 1209196 / 13200000
+[INFO 14:19:47] my_main Estimated time left: 1 days, 15 hours, 54 minutes, 2 seconds. Time passed: 4 hours, 12 minutes, 19 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:40568 disconnected
+[INFO 14:20:17] absl Shutdown gracefully.
+[INFO 14:20:17] absl Shutdown with return code: -15
+[INFO 14:20:17] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 39057 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-ac_wvt46/
+[INFO 14:20:17] absl Connecting to: ws://127.0.0.1:39057/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 39057 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-ac_wvt46/'
+Starting up...
+Startup Phase 1 complete
+[INFO 14:20:18] absl Connecting to: ws://127.0.0.1:39057/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:39057
+Startup Phase 3 complete. Ready for commands.
+[INFO 14:20:19] absl Connecting to: ws://127.0.0.1:39057/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:55122 accepted
+ReadyHandler: 127.0.0.1:55122 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 14:22:01] my_main t_env: 1219322 / 13200000
+[INFO 14:22:01] my_main Estimated time left: 1 days, 20 hours, 1 minutes, 8 seconds. Time passed: 4 hours, 14 minutes, 33 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:33164 disconnected
+[INFO 14:22:15] absl Shutdown gracefully.
+[INFO 14:22:15] absl Shutdown with return code: -15
+[INFO 14:22:15] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 34981 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-6ndh_ziy/
+[INFO 14:22:15] absl Connecting to: ws://127.0.0.1:34981/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 34981 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-6ndh_ziy/'
+Starting up...
+Startup Phase 1 complete
+[INFO 14:22:16] absl Connecting to: ws://127.0.0.1:34981/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:34981
+Startup Phase 3 complete. Ready for commands.
+[INFO 14:22:17] absl Connecting to: ws://127.0.0.1:34981/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:41206 accepted
+ReadyHandler: 127.0.0.1:41206 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 14:23:36] my_main Updated target network
+[INFO 14:24:10] my_main t_env: 1229433 / 13200000
+[INFO 14:24:10] my_main Estimated time left: 1 days, 18 hours, 29 minutes, 5 seconds. Time passed: 4 hours, 16 minutes, 42 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:41262 disconnected
+[INFO 14:24:30] absl Shutdown gracefully.
+[INFO 14:24:30] absl Shutdown with return code: -15
+[INFO 14:24:30] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 36833 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-nm1j9_8q/
+[INFO 14:24:30] absl Connecting to: ws://127.0.0.1:36833/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 36833 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-nm1j9_8q/'
+Starting up...
+Startup Phase 1 complete
+[INFO 14:24:31] absl Connecting to: ws://127.0.0.1:36833/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:36833
+Startup Phase 3 complete. Ready for commands.
+[INFO 14:24:32] absl Connecting to: ws://127.0.0.1:36833/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:44776 accepted
+ReadyHandler: 127.0.0.1:44776 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:56104 disconnected
+[INFO 14:25:40] absl Shutdown gracefully.
+[INFO 14:25:40] absl Shutdown with return code: -15
+[INFO 14:25:40] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 36995 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-pyhr1or6/
+[INFO 14:25:40] absl Connecting to: ws://127.0.0.1:36995/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 36995 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-pyhr1or6/'
+Starting up...
+Startup Phase 1 complete
+[INFO 14:25:41] absl Connecting to: ws://127.0.0.1:36995/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:36995
+Startup Phase 3 complete. Ready for commands.
+[INFO 14:25:42] absl Connecting to: ws://127.0.0.1:36995/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:56248 accepted
+ReadyHandler: 127.0.0.1:56248 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 14:26:28] my_main t_env: 1239852 / 13200000
+[INFO 14:26:28] my_main Estimated time left: 1 days, 20 hours, 2 minutes, 39 seconds. Time passed: 4 hours, 19 minutes, 0 seconds
+[INFO 14:28:23] my_main Updated target network
+[INFO 14:28:27] my_main t_env: 1249885 / 13200000
+[INFO 14:28:27] my_main Estimated time left: 1 days, 15 hours, 26 minutes, 9 seconds. Time passed: 4 hours, 20 minutes, 59 seconds
+[INFO 14:30:38] my_main t_env: 1259911 / 13200000
+[INFO 14:30:38] my_main Estimated time left: 1 days, 19 hours, 8 minutes, 15 seconds. Time passed: 4 hours, 23 minutes, 10 seconds
+[INFO 14:32:43] my_main t_env: 1270149 / 13200000
+[INFO 14:32:43] my_main Estimated time left: 1 days, 16 hours, 22 minutes, 57 seconds. Time passed: 4 hours, 25 minutes, 15 seconds
+[INFO 14:33:32] my_main Updated target network
+[INFO 14:34:45] my_main t_env: 1280186 / 13200000
+[INFO 14:34:45] my_main Estimated time left: 1 days, 16 hours, 20 minutes, 42 seconds. Time passed: 4 hours, 27 minutes, 17 seconds
+[INFO 14:36:47] my_main t_env: 1290239 / 13200000
+[INFO 14:36:47] my_main Estimated time left: 1 days, 16 hours, 7 minutes, 55 seconds. Time passed: 4 hours, 29 minutes, 19 seconds
+[INFO 14:38:05] my_main Updated target network
+[INFO 14:38:58] my_main t_env: 1300458 / 13200000
+[INFO 14:38:58] my_main Estimated time left: 1 days, 18 hours, 27 minutes, 30 seconds. Time passed: 4 hours, 31 minutes, 30 seconds
+[INFO 14:41:08] my_main t_env: 1310808 / 13200000
+[INFO 14:41:08] my_main Estimated time left: 1 days, 17 hours, 20 minutes, 14 seconds. Time passed: 4 hours, 33 minutes, 40 seconds
+[INFO 14:42:39] my_main Updated target network
+[INFO 14:43:16] my_main t_env: 1321115 / 13200000
+[INFO 14:43:16] my_main Estimated time left: 1 days, 16 hours, 58 minutes, 25 seconds. Time passed: 4 hours, 35 minutes, 48 seconds
+[INFO 14:45:26] my_main t_env: 1331605 / 13200000
+[INFO 14:45:26] my_main Estimated time left: 1 days, 16 hours, 52 minutes, 16 seconds. Time passed: 4 hours, 37 minutes, 58 seconds
+[INFO 14:47:08] my_main Updated target network
+[INFO 14:47:31] my_main t_env: 1341769 / 13200000
+[INFO 14:47:31] my_main Estimated time left: 1 days, 16 hours, 31 minutes, 36 seconds. Time passed: 4 hours, 40 minutes, 3 seconds
+[INFO 14:49:41] my_main t_env: 1352268 / 13200000
+[INFO 14:49:41] my_main Estimated time left: 1 days, 16 hours, 46 minutes, 22 seconds. Time passed: 4 hours, 42 minutes, 13 seconds
+[INFO 14:51:32] my_main Updated target network
+[INFO 14:51:55] my_main t_env: 1362745 / 13200000
+[INFO 14:51:55] my_main Estimated time left: 1 days, 17 hours, 59 minutes, 57 seconds. Time passed: 4 hours, 44 minutes, 27 seconds
+[INFO 14:54:01] my_main t_env: 1373207 / 13200000
+[INFO 14:54:01] my_main Estimated time left: 1 days, 15 hours, 43 minutes, 54 seconds. Time passed: 4 hours, 46 minutes, 33 seconds
+[INFO 14:55:57] my_main Updated target network
+[INFO 14:56:09] my_main t_env: 1383347 / 13200000
+[INFO 14:56:09] my_main Estimated time left: 1 days, 17 hours, 21 minutes, 37 seconds. Time passed: 4 hours, 48 minutes, 41 seconds
+[INFO 14:58:18] my_main t_env: 1393728 / 13200000
+[INFO 14:58:18] my_main Estimated time left: 1 days, 16 hours, 45 minutes, 47 seconds. Time passed: 4 hours, 50 minutes, 50 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:55122 disconnected
+[INFO 14:59:37] absl Shutdown gracefully.
+[INFO 14:59:37] absl Shutdown with return code: -15
+[INFO 14:59:37] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 40891 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-ds5xfu7k/
+[INFO 14:59:37] absl Connecting to: ws://127.0.0.1:40891/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 40891 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-ds5xfu7k/'
+Starting up...
+Startup Phase 1 complete
+[INFO 14:59:38] absl Connecting to: ws://127.0.0.1:40891/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:40891
+Startup Phase 3 complete. Ready for commands.
+[INFO 14:59:39] absl Connecting to: ws://127.0.0.1:40891/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:44790 accepted
+ReadyHandler: 127.0.0.1:44790 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 15:00:29] my_main Updated target network
+[INFO 15:00:33] my_main t_env: 1404100 / 13200000
+[INFO 15:00:33] my_main Estimated time left: 1 days, 18 hours, 36 minutes, 29 seconds. Time passed: 4 hours, 53 minutes, 5 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:41206 disconnected
+[INFO 15:01:53] absl Shutdown gracefully.
+[INFO 15:01:53] absl Shutdown with return code: -15
+[INFO 15:01:53] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 43755 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-ypol7uw1/
+[INFO 15:01:53] absl Connecting to: ws://127.0.0.1:43755/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 43755 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-ypol7uw1/'
+Starting up...
+Startup Phase 1 complete
+[INFO 15:01:54] absl Connecting to: ws://127.0.0.1:43755/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:43755
+Startup Phase 3 complete. Ready for commands.
+[INFO 15:01:55] absl Connecting to: ws://127.0.0.1:43755/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:42716 accepted
+ReadyHandler: 127.0.0.1:42716 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 15:02:52] my_main t_env: 1414576 / 13200000
+[INFO 15:02:52] my_main Estimated time left: 1 days, 19 hours, 28 minutes, 38 seconds. Time passed: 4 hours, 55 minutes, 24 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:44776 disconnected
+[INFO 15:04:33] absl Shutdown gracefully.
+[INFO 15:04:33] absl Shutdown with return code: -15
+[INFO 15:04:33] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 37377 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-4kry58vv/
+[INFO 15:04:33] absl Connecting to: ws://127.0.0.1:37377/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 37377 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-4kry58vv/'
+Starting up...
+Startup Phase 1 complete
+[INFO 15:04:34] absl Connecting to: ws://127.0.0.1:37377/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:37377
+Startup Phase 3 complete. Ready for commands.
+[INFO 15:04:35] absl Connecting to: ws://127.0.0.1:37377/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:39670 accepted
+ReadyHandler: 127.0.0.1:39670 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 15:04:53] my_main t_env: 1424661 / 13200000
+[INFO 15:04:53] my_main Estimated time left: 1 days, 15 hours, 5 minutes, 48 seconds. Time passed: 4 hours, 57 minutes, 24 seconds
+DataHandler: unable to parse websocket frame.
+RequestQuit command received.
+CloseHandler: 127.0.0.1:56248 disconnected
+Closing Application...
+ResponseThread: No connection, dropping the response.
+[INFO 15:04:54] absl Shutdown gracefully.
+[INFO 15:04:54] absl Shutdown with return code: -15
+[INFO 15:04:54] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 45617 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-gnydllze/
+[INFO 15:04:54] absl Connecting to: ws://127.0.0.1:45617/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 45617 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-gnydllze/'
+Starting up...
+Startup Phase 1 complete
+[INFO 15:04:55] absl Connecting to: ws://127.0.0.1:45617/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:45617
+Startup Phase 3 complete. Ready for commands.
+[INFO 15:04:56] absl Connecting to: ws://127.0.0.1:45617/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:40454 accepted
+ReadyHandler: 127.0.0.1:40454 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 15:05:36] my_main Updated target network
+[INFO 15:06:56] my_main t_env: 1434782 / 13200000
+[INFO 15:06:56] my_main Estimated time left: 1 days, 15 hours, 57 minutes, 30 seconds. Time passed: 4 hours, 59 minutes, 28 seconds
+[INFO 15:08:51] my_main t_env: 1444854 / 13200000
+[INFO 15:08:51] my_main Estimated time left: 1 days, 13 hours, 12 minutes, 21 seconds. Time passed: 5 hours, 1 minutes, 23 seconds
+[INFO 15:09:55] my_main Updated target network
+[INFO 15:10:48] my_main t_env: 1454865 / 13200000
+[INFO 15:10:48] my_main Estimated time left: 1 days, 14 hours, 8 minutes, 1 seconds. Time passed: 5 hours, 3 minutes, 20 seconds
+[INFO 15:12:45] my_main t_env: 1465139 / 13200000
+[INFO 15:12:45] my_main Estimated time left: 1 days, 13 hours, 10 minutes, 15 seconds. Time passed: 5 hours, 5 minutes, 17 seconds
+[INFO 15:14:00] my_main Updated target network
+[INFO 15:14:46] my_main t_env: 1475644 / 13200000
+[INFO 15:14:46] my_main Estimated time left: 1 days, 13 hours, 25 minutes, 13 seconds. Time passed: 5 hours, 7 minutes, 18 seconds
+[INFO 15:16:41] my_main t_env: 1485746 / 13200000
+[INFO 15:16:41] my_main Estimated time left: 1 days, 13 hours, 8 minutes, 55 seconds. Time passed: 5 hours, 9 minutes, 13 seconds
+[INFO 15:18:11] my_main Updated target network
+[INFO 15:18:40] my_main t_env: 1495970 / 13200000
+[INFO 15:18:40] my_main Estimated time left: 1 days, 13 hours, 37 minutes, 2 seconds. Time passed: 5 hours, 11 minutes, 11 seconds
+[INFO 15:20:40] my_main t_env: 1506222 / 13200000
+[INFO 15:20:40] my_main Estimated time left: 1 days, 14 hours, 10 minutes, 50 seconds. Time passed: 5 hours, 13 minutes, 12 seconds
+[INFO 15:22:20] my_main Updated target network
+[INFO 15:22:40] my_main t_env: 1516421 / 13200000
+[INFO 15:22:40] my_main Estimated time left: 1 days, 14 hours, 3 minutes, 47 seconds. Time passed: 5 hours, 15 minutes, 12 seconds
+[INFO 15:24:43] my_main t_env: 1526677 / 13200000
+[INFO 15:24:43] my_main Estimated time left: 1 days, 14 hours, 50 minutes, 48 seconds. Time passed: 5 hours, 17 minutes, 14 seconds
+[INFO 15:26:26] my_main Updated target network
+[INFO 15:26:42] my_main t_env: 1537006 / 13200000
+[INFO 15:26:42] my_main Estimated time left: 1 days, 13 hours, 24 minutes, 16 seconds. Time passed: 5 hours, 19 minutes, 14 seconds
+[INFO 15:28:46] my_main t_env: 1547132 / 13200000
+[INFO 15:28:46] my_main Estimated time left: 1 days, 15 hours, 46 minutes, 19 seconds. Time passed: 5 hours, 21 minutes, 18 seconds
+[INFO 15:30:30] my_main Updated target network
+[INFO 15:30:46] my_main t_env: 1557306 / 13200000
+[INFO 15:30:46] my_main Estimated time left: 1 days, 14 hours, 8 minutes, 8 seconds. Time passed: 5 hours, 23 minutes, 18 seconds
+[INFO 15:32:45] my_main t_env: 1567368 / 13200000
+[INFO 15:32:45] my_main Estimated time left: 1 days, 14 hours, 9 minutes, 41 seconds. Time passed: 5 hours, 25 minutes, 17 seconds
+[INFO 15:34:41] my_main t_env: 1577372 / 13200000
+[INFO 15:34:41] my_main Estimated time left: 1 days, 13 hours, 19 minutes, 26 seconds. Time passed: 5 hours, 27 minutes, 13 seconds
+[INFO 15:35:15] my_main Updated target network
+[INFO 15:36:42] my_main t_env: 1587504 / 13200000
+[INFO 15:36:42] my_main Estimated time left: 1 days, 14 hours, 44 minutes, 34 seconds. Time passed: 5 hours, 29 minutes, 14 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:44790 disconnected
+[INFO 15:37:36] absl Shutdown gracefully.
+[INFO 15:37:36] absl Shutdown with return code: -15
+[INFO 15:37:36] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 42067 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-zoxapl6y/
+[INFO 15:37:36] absl Connecting to: ws://127.0.0.1:42067/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 42067 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-zoxapl6y/'
+Starting up...
+Startup Phase 1 complete
+[INFO 15:37:37] absl Connecting to: ws://127.0.0.1:42067/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:42067
+Startup Phase 3 complete. Ready for commands.
+[INFO 15:37:38] absl Connecting to: ws://127.0.0.1:42067/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:47226 accepted
+ReadyHandler: 127.0.0.1:47226 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 15:38:43] my_main t_env: 1597946 / 13200000
+[INFO 15:38:43] my_main Estimated time left: 1 days, 13 hours, 8 minutes, 51 seconds. Time passed: 5 hours, 31 minutes, 15 seconds
+DataHandler: unable to parse websocket frame.
+RequestQuit command received.
+CloseHandler: 127.0.0.1:42716 disconnected
+Closing Application...
+ResponseThread: No connection, dropping the response.
+[INFO 15:39:05] absl Shutdown gracefully.
+[INFO 15:39:05] absl Shutdown with return code: -15
+[INFO 15:39:05] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 34993 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-zedt9lf7/
+[INFO 15:39:05] absl Connecting to: ws://127.0.0.1:34993/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 34993 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-zedt9lf7/'
+Starting up...
+Startup Phase 1 complete
+[INFO 15:39:06] absl Connecting to: ws://127.0.0.1:34993/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:34993
+Startup Phase 3 complete. Ready for commands.
+[INFO 15:39:07] absl Connecting to: ws://127.0.0.1:34993/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:55710 accepted
+ReadyHandler: 127.0.0.1:55710 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 15:39:45] my_main Updated target network
+[INFO 15:40:49] my_main t_env: 1608209 / 13200000
+[INFO 15:40:49] my_main Estimated time left: 1 days, 15 hours, 45 minutes, 17 seconds. Time passed: 5 hours, 33 minutes, 21 seconds
+RequestQuit command received.
+DataHandler: unable to parse websocket frame.
+Closing Application...
+CloseHandler: 127.0.0.1:40454 disconnected
+[INFO 15:41:50] absl Shutdown gracefully.
+[INFO 15:41:50] absl Shutdown with return code: -15
+[INFO 15:41:50] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 39877 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-sxkote5h/
+[INFO 15:41:50] absl Connecting to: ws://127.0.0.1:39877/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 39877 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-sxkote5h/'
+Starting up...
+Startup Phase 1 complete
+[INFO 15:41:51] absl Connecting to: ws://127.0.0.1:39877/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:39877
+Startup Phase 3 complete. Ready for commands.
+[INFO 15:41:52] absl Connecting to: ws://127.0.0.1:39877/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:51454 accepted
+ReadyHandler: 127.0.0.1:51454 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+RequestQuit command received.
+DataHandler: unable to parse websocket frame.
+Closing Application...
+CloseHandler: 127.0.0.1:39670 disconnected
+[INFO 15:42:07] absl Shutdown gracefully.
+[INFO 15:42:07] absl Shutdown with return code: -15
+[INFO 15:42:07] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 35663 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-myx0um02/
+[INFO 15:42:07] absl Connecting to: ws://127.0.0.1:35663/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 35663 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-myx0um02/'
+Starting up...
+Startup Phase 1 complete
+[INFO 15:42:08] absl Connecting to: ws://127.0.0.1:35663/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:35663
+Startup Phase 3 complete. Ready for commands.
+[INFO 15:42:09] absl Connecting to: ws://127.0.0.1:35663/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:60144 accepted
+ReadyHandler: 127.0.0.1:60144 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 15:43:04] my_main t_env: 1618580 / 13200000
+[INFO 15:43:04] my_main Estimated time left: 1 days, 17 hours, 44 minutes, 42 seconds. Time passed: 5 hours, 35 minutes, 36 seconds
+[INFO 15:44:12] my_main Updated target network
+[INFO 15:45:03] my_main t_env: 1628720 / 13200000
+[INFO 15:45:03] my_main Estimated time left: 1 days, 13 hours, 42 minutes, 11 seconds. Time passed: 5 hours, 37 minutes, 35 seconds
+[INFO 15:47:05] my_main t_env: 1639064 / 13200000
+[INFO 15:47:05] my_main Estimated time left: 1 days, 13 hours, 52 minutes, 54 seconds. Time passed: 5 hours, 39 minutes, 37 seconds
+[INFO 15:48:27] my_main Updated target network
+[INFO 15:49:10] my_main t_env: 1649299 / 13200000
+[INFO 15:49:10] my_main Estimated time left: 1 days, 15 hours, 8 minutes, 58 seconds. Time passed: 5 hours, 41 minutes, 42 seconds
+[INFO 15:51:06] my_main t_env: 1659321 / 13200000
+[INFO 15:51:06] my_main Estimated time left: 1 days, 13 hours, 5 minutes, 54 seconds. Time passed: 5 hours, 43 minutes, 38 seconds
+[INFO 15:52:42] my_main Updated target network
+[INFO 15:53:06] my_main t_env: 1669550 / 13200000
+[INFO 15:53:06] my_main Estimated time left: 1 days, 13 hours, 35 minutes, 15 seconds. Time passed: 5 hours, 45 minutes, 38 seconds
+[INFO 15:55:01] my_main t_env: 1679569 / 13200000
+[INFO 15:55:01] my_main Estimated time left: 1 days, 12 hours, 46 minutes, 55 seconds. Time passed: 5 hours, 47 minutes, 33 seconds
+[INFO 15:57:02] my_main Updated target network
+[INFO 15:57:02] my_main t_env: 1689788 / 13200000
+[INFO 15:57:02] my_main Estimated time left: 1 days, 13 hours, 59 minutes, 21 seconds. Time passed: 5 hours, 49 minutes, 34 seconds
+[INFO 15:59:00] my_main t_env: 1699972 / 13200000
+[INFO 15:59:00] my_main Estimated time left: 1 days, 12 hours, 58 minutes, 14 seconds. Time passed: 5 hours, 51 minutes, 32 seconds
+[INFO 16:00:59] my_main t_env: 1710195 / 13200000
+[INFO 16:00:59] my_main Estimated time left: 1 days, 13 hours, 40 seconds. Time passed: 5 hours, 53 minutes, 31 seconds
+[INFO 16:01:53] my_main Updated target network
+[INFO 16:02:58] my_main t_env: 1720539 / 13200000
+[INFO 16:02:58] my_main Estimated time left: 1 days, 12 hours, 39 minutes, 31 seconds. Time passed: 5 hours, 55 minutes, 30 seconds
+[INFO 16:04:57] my_main t_env: 1730549 / 13200000
+[INFO 16:04:57] my_main Estimated time left: 1 days, 13 hours, 47 minutes, 15 seconds. Time passed: 5 hours, 57 minutes, 28 seconds
+[INFO 16:06:27] my_main Updated target network
+[INFO 16:06:55] my_main t_env: 1740625 / 13200000
+[INFO 16:06:55] my_main Estimated time left: 1 days, 13 hours, 17 minutes, 37 seconds. Time passed: 5 hours, 59 minutes, 27 seconds
+[INFO 16:08:50] my_main t_env: 1751207 / 13200000
+[INFO 16:08:50] my_main Estimated time left: 1 days, 10 hours, 35 minutes, 9 seconds. Time passed: 6 hours, 1 minutes, 22 seconds
+[INFO 16:10:52] my_main t_env: 1761601 / 13200000
+[INFO 16:10:52] my_main Estimated time left: 1 days, 13 hours, 28 minutes, 16 seconds. Time passed: 6 hours, 3 minutes, 24 seconds
+[INFO 16:11:31] my_main Updated target network
+[INFO 16:12:52] my_main t_env: 1771745 / 13200000
+[INFO 16:12:52] my_main Estimated time left: 1 days, 13 hours, 34 minutes, 47 seconds. Time passed: 6 hours, 5 minutes, 24 seconds
+[INFO 16:14:54] my_main t_env: 1782160 / 13200000
+[INFO 16:14:54] my_main Estimated time left: 1 days, 13 hours, 12 minutes, 22 seconds. Time passed: 6 hours, 7 minutes, 26 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:47226 disconnected
+[INFO 16:15:18] absl Shutdown gracefully.
+[INFO 16:15:18] absl Shutdown with return code: -15
+[INFO 16:15:18] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 43807 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-b6lmqrqq/
+[INFO 16:15:18] absl Connecting to: ws://127.0.0.1:43807/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 43807 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-b6lmqrqq/'
+Starting up...
+Startup Phase 1 complete
+[INFO 16:15:19] absl Connecting to: ws://127.0.0.1:43807/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:43807
+Startup Phase 3 complete. Ready for commands.
+[INFO 16:15:20] absl Connecting to: ws://127.0.0.1:43807/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:40324 accepted
+ReadyHandler: 127.0.0.1:40324 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:55710 disconnected
+[INFO 16:15:34] absl Shutdown gracefully.
+[INFO 16:15:34] absl Shutdown with return code: -15
+[INFO 16:15:34] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 41969 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-0do4zna_/
+[INFO 16:15:34] absl Connecting to: ws://127.0.0.1:41969/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 41969 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-0do4zna_/'
+Starting up...
+Startup Phase 1 complete
+[INFO 16:15:35] absl Connecting to: ws://127.0.0.1:41969/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:41969
+Startup Phase 3 complete. Ready for commands.
+[INFO 16:15:36] absl Connecting to: ws://127.0.0.1:41969/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:50308 accepted
+ReadyHandler: 127.0.0.1:50308 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 16:16:10] my_main Updated target network
+[INFO 16:17:08] my_main t_env: 1792629 / 13200000
+[INFO 16:17:08] my_main Estimated time left: 1 days, 16 hours, 18 minutes, 43 seconds. Time passed: 6 hours, 9 minutes, 40 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:51454 disconnected
+[INFO 16:18:57] absl Shutdown gracefully.
+[INFO 16:18:57] absl Shutdown with return code: -15
+[INFO 16:18:57] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 39971 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-bw2zrzrw/
+[INFO 16:18:57] absl Connecting to: ws://127.0.0.1:39971/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 39971 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-bw2zrzrw/'
+Starting up...
+Startup Phase 1 complete
+[INFO 16:18:58] absl Connecting to: ws://127.0.0.1:39971/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:39971
+Startup Phase 3 complete. Ready for commands.
+[INFO 16:18:59] absl Connecting to: ws://127.0.0.1:39971/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:54280 accepted
+ReadyHandler: 127.0.0.1:54280 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 16:19:10] my_main t_env: 1802838 / 13200000
+[INFO 16:19:10] my_main Estimated time left: 1 days, 13 hours, 58 minutes, 14 seconds. Time passed: 6 hours, 11 minutes, 42 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:60144 disconnected
+[INFO 16:19:14] absl Shutdown gracefully.
+[INFO 16:19:14] absl Shutdown with return code: -15
+[INFO 16:19:14] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 45723 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-pske_a2l/
+[INFO 16:19:14] absl Connecting to: ws://127.0.0.1:45723/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 45723 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-pske_a2l/'
+Starting up...
+Startup Phase 1 complete
+[INFO 16:19:15] absl Connecting to: ws://127.0.0.1:45723/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:45723
+Startup Phase 3 complete. Ready for commands.
+[INFO 16:19:16] absl Connecting to: ws://127.0.0.1:45723/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:48648 accepted
+ReadyHandler: 127.0.0.1:48648 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 16:20:44] my_main Updated target network
+[INFO 16:21:19] my_main t_env: 1813218 / 13200000
+[INFO 16:21:19] my_main Estimated time left: 1 days, 15 hours, 13 minutes, 41 seconds. Time passed: 6 hours, 13 minutes, 51 seconds
+[INFO 16:23:16] my_main t_env: 1823238 / 13200000
+[INFO 16:23:16] my_main Estimated time left: 1 days, 13 hours, 14 seconds. Time passed: 6 hours, 15 minutes, 48 seconds
+[INFO 16:25:07] my_main Updated target network
+[INFO 16:25:15] my_main t_env: 1833772 / 13200000
+[INFO 16:25:15] my_main Estimated time left: 1 days, 11 hours, 42 minutes, 29 seconds. Time passed: 6 hours, 17 minutes, 47 seconds
+[INFO 16:27:13] my_main t_env: 1843772 / 13200000
+[INFO 16:27:13] my_main Estimated time left: 1 days, 12 hours, 59 minutes, 20 seconds. Time passed: 6 hours, 19 minutes, 45 seconds
+[INFO 16:29:11] my_main t_env: 1854087 / 13200000
+[INFO 16:29:11] my_main Estimated time left: 1 days, 12 hours, 12 minutes, 1 seconds. Time passed: 6 hours, 21 minutes, 43 seconds
+[INFO 16:29:48] my_main Updated target network
+[INFO 16:31:12] my_main t_env: 1864318 / 13200000
+[INFO 16:31:12] my_main Estimated time left: 1 days, 13 hours, 8 minutes, 42 seconds. Time passed: 6 hours, 23 minutes, 44 seconds
+[INFO 16:33:10] my_main t_env: 1874893 / 13200000
+[INFO 16:33:10] my_main Estimated time left: 1 days, 11 hours, 10 minutes, 32 seconds. Time passed: 6 hours, 25 minutes, 42 seconds
+[INFO 16:34:06] my_main Updated target network
+[INFO 16:35:06] my_main t_env: 1884917 / 13200000
+[INFO 16:35:06] my_main Estimated time left: 1 days, 12 hours, 15 minutes, 14 seconds. Time passed: 6 hours, 27 minutes, 38 seconds
+[INFO 16:37:06] my_main t_env: 1895372 / 13200000
+[INFO 16:37:06] my_main Estimated time left: 1 days, 12 hours, 10 minutes, 37 seconds. Time passed: 6 hours, 29 minutes, 38 seconds
+[INFO 16:38:18] my_main Updated target network
+[INFO 16:39:05] my_main t_env: 1905713 / 13200000
+[INFO 16:39:05] my_main Estimated time left: 1 days, 12 hours, 5 minutes, 35 seconds. Time passed: 6 hours, 31 minutes, 37 seconds
+[INFO 16:41:05] my_main t_env: 1916083 / 13200000
+[INFO 16:41:05] my_main Estimated time left: 1 days, 12 hours, 19 minutes, 41 seconds. Time passed: 6 hours, 33 minutes, 37 seconds
+[INFO 16:42:38] my_main Updated target network
+[INFO 16:43:03] my_main t_env: 1926356 / 13200000
+[INFO 16:43:03] my_main Estimated time left: 1 days, 11 hours, 45 minutes, 17 seconds. Time passed: 6 hours, 35 minutes, 34 seconds
+[INFO 16:44:56] my_main t_env: 1936537 / 13200000
+[INFO 16:44:56] my_main Estimated time left: 1 days, 11 hours, 1 minutes, 24 seconds. Time passed: 6 hours, 37 minutes, 28 seconds
+[INFO 16:46:55] my_main Updated target network
+[INFO 16:46:55] my_main t_env: 1946574 / 13200000
+[INFO 16:46:55] my_main Estimated time left: 1 days, 13 hours, 1 minutes, 38 seconds. Time passed: 6 hours, 39 minutes, 27 seconds
+[INFO 16:49:00] my_main t_env: 1956882 / 13200000
+[INFO 16:49:00] my_main Estimated time left: 1 days, 13 hours, 44 minutes, 19 seconds. Time passed: 6 hours, 41 minutes, 32 seconds
+[INFO 16:50:56] my_main t_env: 1966942 / 13200000
+[INFO 16:50:56] my_main Estimated time left: 1 days, 12 hours, 3 minutes, 57 seconds. Time passed: 6 hours, 43 minutes, 28 seconds
+RequestQuit command received.
+DataHandler: unable to parse websocket frame.
+Closing Application...
+CloseHandler: 127.0.0.1:40324 disconnected
+ResponseThread: No connection, dropping the response.
+[INFO 16:51:35] absl Shutdown gracefully.
+[INFO 16:51:35] absl Shutdown with return code: -15
+[INFO 16:51:35] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 46307 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-xq9qmu0x/
+[INFO 16:51:35] absl Connecting to: ws://127.0.0.1:46307/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 46307 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-xq9qmu0x/'
+Starting up...
+Startup Phase 1 complete
+[INFO 16:51:36] absl Connecting to: ws://127.0.0.1:46307/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:46307
+Startup Phase 3 complete. Ready for commands.
+[INFO 16:51:37] absl Connecting to: ws://127.0.0.1:46307/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:38262 accepted
+ReadyHandler: 127.0.0.1:38262 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 16:51:48] my_main Updated target network
+[INFO 16:52:59] my_main t_env: 1977214 / 13200000
+[INFO 16:52:59] my_main Estimated time left: 1 days, 13 hours, 23 minutes, 14 seconds. Time passed: 6 hours, 45 minutes, 31 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:50308 disconnected
+[INFO 16:53:13] absl Shutdown gracefully.
+[INFO 16:53:13] absl Shutdown with return code: -15
+[INFO 16:53:13] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 40141 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-l92wiyyq/
+[INFO 16:53:13] absl Connecting to: ws://127.0.0.1:40141/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 40141 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-l92wiyyq/'
+Starting up...
+Startup Phase 1 complete
+[INFO 16:53:14] absl Connecting to: ws://127.0.0.1:40141/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:40141
+Startup Phase 3 complete. Ready for commands.
+[INFO 16:53:15] absl Connecting to: ws://127.0.0.1:40141/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:44340 accepted
+ReadyHandler: 127.0.0.1:44340 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 16:55:02] my_main t_env: 1987352 / 13200000
+[INFO 16:55:02] my_main Estimated time left: 1 days, 13 hours, 38 minutes, 7 seconds. Time passed: 6 hours, 47 minutes, 34 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:48648 disconnected
+[INFO 16:55:18] absl Shutdown gracefully.
+[INFO 16:55:18] absl Shutdown with return code: -15
+[INFO 16:55:18] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 42867 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-j6f62m8h/
+[INFO 16:55:18] absl Connecting to: ws://127.0.0.1:42867/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 42867 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-j6f62m8h/'
+Starting up...
+Startup Phase 1 complete
+[INFO 16:55:19] absl Connecting to: ws://127.0.0.1:42867/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:42867
+Startup Phase 3 complete. Ready for commands.
+[INFO 16:55:20] absl Connecting to: ws://127.0.0.1:42867/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:60728 accepted
+ReadyHandler: 127.0.0.1:60728 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+DataHandler: unable to parse websocket frame.
+RequestQuit command received.
+CloseHandler: 127.0.0.1:54280 disconnected
+Closing Application...
+ResponseThread: No connection, dropping the response.
+[INFO 16:55:58] absl Shutdown gracefully.
+[INFO 16:55:58] absl Shutdown with return code: -15
+[INFO 16:55:58] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 37299 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-wez_54u_/
+[INFO 16:55:58] absl Connecting to: ws://127.0.0.1:37299/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 37299 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-wez_54u_/'
+Starting up...
+Startup Phase 1 complete
+[INFO 16:55:59] absl Connecting to: ws://127.0.0.1:37299/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:37299
+Startup Phase 3 complete. Ready for commands.
+[INFO 16:56:00] absl Connecting to: ws://127.0.0.1:37299/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:57946 accepted
+ReadyHandler: 127.0.0.1:57946 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 16:56:30] my_main Updated target network
+[INFO 16:57:08] my_main t_env: 1997365 / 13200000
+[INFO 16:57:08] my_main Estimated time left: 1 days, 15 hours, 17 minutes, 0 seconds. Time passed: 6 hours, 49 minutes, 40 seconds
+[INFO 16:59:11] my_main t_env: 2007795 / 13200000
+[INFO 16:59:11] my_main Estimated time left: 1 days, 12 hours, 38 minutes, 13 seconds. Time passed: 6 hours, 51 minutes, 43 seconds
+[INFO 17:00:53] my_main Updated target network
+[INFO 17:01:12] my_main t_env: 2017877 / 13200000
+[INFO 17:01:12] my_main Estimated time left: 1 days, 13 hours, 14 minutes, 0 seconds. Time passed: 6 hours, 53 minutes, 44 seconds
+[INFO 17:03:07] my_main t_env: 2028042 / 13200000
+[INFO 17:03:07] my_main Estimated time left: 1 days, 11 hours, 2 minutes, 12 seconds. Time passed: 6 hours, 55 minutes, 39 seconds
+[INFO 17:05:02] my_main t_env: 2038156 / 13200000
+[INFO 17:05:02] my_main Estimated time left: 1 days, 11 hours, 15 minutes, 53 seconds. Time passed: 6 hours, 57 minutes, 34 seconds
+[INFO 17:05:35] my_main Updated target network
+[INFO 17:07:01] my_main t_env: 2048664 / 13200000
+[INFO 17:07:01] my_main Estimated time left: 1 days, 11 hours, 1 minutes, 45 seconds. Time passed: 6 hours, 59 minutes, 33 seconds
+[INFO 17:09:00] my_main t_env: 2058719 / 13200000
+[INFO 17:09:00] my_main Estimated time left: 1 days, 12 hours, 40 minutes, 15 seconds. Time passed: 7 hours, 1 minutes, 32 seconds
+[INFO 17:09:47] my_main Updated target network
+CloseHandler: 127.0.0.1:57946 disconnected
+CloseHandler: 127.0.0.1:60728 disconnected
+CloseHandler: 127.0.0.1:44340 disconnected
+CloseHandler: 127.0.0.1:38262 disconnected
+main Updated target network
+CloseHandler: 127.0.0.1:34840 disconnected
+CloseHandler: 127.0.0.1:52778 disconnected
+CloseHandler: 127.0.0.1:51894 disconnected
+CloseHandler: 127.0.0.1:45120 disconnected
+ absl Connecting to: ws://127.0.0.1:34683/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:34683
+Startup Phase 3 complete. Ready for commands.
+[INFO 16:54:16] absl Connecting to: ws://127.0.0.1:34683/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:57238 accepted
+ReadyHandler: 127.0.0.1:57238 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:58988 disconnected
+[INFO 16:54:55] absl Shutdown gracefully.
+[INFO 16:54:55] absl Shutdown with return code: -15
+[INFO 16:54:55] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 42681 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-0hakhydv/
+[INFO 16:54:55] absl Connecting to: ws://127.0.0.1:42681/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 42681 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-0hakhydv/'
+Starting up...
+Startup Phase 1 complete
+[INFO 16:54:56] absl Connecting to: ws://127.0.0.1:42681/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:42681
+Startup Phase 3 complete. Ready for commands.
+[INFO 16:54:57] absl Connecting to: ws://127.0.0.1:42681/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:56658 accepted
+ReadyHandler: 127.0.0.1:56658 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 16:56:03] my_main t_env: 2095310 / 13200000
+[INFO 16:56:03] my_main Estimated time left: 1 days, 15 hours, 2 minutes, 2 seconds. Time passed: 6 hours, 48 minutes, 27 seconds
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:41652 disconnected
+[INFO 16:56:05] absl Shutdown gracefully.
+[INFO 16:56:05] absl Shutdown with return code: -15
+[INFO 16:56:05] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 45197 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-cct5in75/
+[INFO 16:56:05] absl Connecting to: ws://127.0.0.1:45197/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 45197 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-cct5in75/'
+Starting up...
+Startup Phase 1 complete
+[INFO 16:56:06] absl Connecting to: ws://127.0.0.1:45197/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:45197
+Startup Phase 3 complete. Ready for commands.
+[INFO 16:56:07] absl Connecting to: ws://127.0.0.1:45197/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:35462 accepted
+ReadyHandler: 127.0.0.1:35462 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+DataHandler: unable to parse websocket frame.
+RequestQuit command received.
+CloseHandler: 127.0.0.1:48272 disconnected
+Closing Application...
+ResponseThread: No connection, dropping the response.
+[INFO 16:56:43] absl Shutdown gracefully.
+[INFO 16:56:43] absl Shutdown with return code: -15
+[INFO 16:56:43] absl Launching SC2: /home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 38283 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-3dpb2t0o/
+[INFO 16:56:43] absl Connecting to: ws://127.0.0.1:38283/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/home/ruanzhonghai/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 38283 -dataDir /home/ruanzhonghai/StarCraftII/ -tempDir /tmp/sc-3dpb2t0o/'
+Starting up...
+Startup Phase 1 complete
+[INFO 16:56:44] absl Connecting to: ws://127.0.0.1:38283/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:38283
+Startup Phase 3 complete. Ready for commands.
+[INFO 16:56:45] absl Connecting to: ws://127.0.0.1:38283/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:52544 accepted
+ReadyHandler: 127.0.0.1:52544 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Using default stable ids, none found at: /home/ruanzhonghai/StarCraftII/stableid.json
+Successfully loaded stable ids: GameData\stableid.json
+Sending ResponseJoinGame
+[INFO 16:57:45] my_main Updated target network
+[INFO 16:58:12] my_main t_env: 2105912 / 13200000
+[INFO 16:58:12] my_main Estimated time left: 1 days, 13 hours, 28 minutes, 41 seconds. Time passed: 6 hours, 50 minutes, 36 seconds
+[INFO 17:00:03] my_main t_env: 2115926 / 13200000
+[INFO 17:00:03] my_main Estimated time left: 1 days, 10 hours, 23 minutes, 23 seconds. Time passed: 6 hours, 52 minutes, 28 seconds
+[INFO 17:01:59] my_main t_env: 2126134 / 13200000
+[INFO 17:01:59] my_main Estimated time left: 1 days, 10 hours, 56 minutes, 21 seconds. Time passed: 6 hours, 54 minutes, 24 seconds
+[INFO 17:03:03] my_main Updated target network
+[INFO 17:03:56] my_main t_env: 2136327 / 13200000
+[INFO 17:03:56] my_main Estimated time left: 1 days, 11 hours, 16 minutes, 14 seconds. Time passed: 6 hours, 56 minutes, 21 seconds
+[INFO 17:05:50] my_main t_env: 2146820 / 13200000
+[INFO 17:05:50] my_main Estimated time left: 1 days, 9 hours, 9 minutes, 7 seconds. Time passed: 6 hours, 58 minutes, 14 seconds
+[INFO 17:07:40] my_main t_env: 2157142 / 13200000
+[INFO 17:07:40] my_main Estimated time left: 1 days, 8 hours, 42 minutes, 36 seconds. Time passed: 7 hours, 4 seconds
+[INFO 17:08:21] my_main Updated target network
+[INFO 17:09:33] my_main t_env: 2167204 / 13200000
+[INFO 17:09:33] my_main Estimated time left: 1 days, 10 hours, 30 minutes, 57 seconds. Time passed: 7 hours, 1 minutes, 58 seconds
+CloseHandler: 127.0.0.1:52544 disconnected
+CloseHandler: 127.0.0.1:57238 disconnected
+CloseHandler: 127.0.0.1:35462 disconnected

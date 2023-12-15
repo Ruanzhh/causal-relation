@@ -19,7 +19,7 @@ env_args:
   reward_only_positive: True
   reward_scale: True
   reward_scale_rate: 20
-  reward_sparse: True
+  reward_sparse: False
   reward_win: 200
   replay_dir: ""
   replay_prefix: ""
@@ -31,7 +31,7 @@ env_args:
   heuristic_rest: False
   debug: False
 
-enemy_shape: 3
+enemy_shape: 1
 test_greedy: True
 test_nepisode: 32
 test_interval: 10000

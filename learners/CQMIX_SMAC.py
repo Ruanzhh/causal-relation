@@ -147,26 +147,27 @@ class CQMIX_SMAC_Learner:
                                                                                             actions_onehot,
                                                                                             enemies_visible, ac)
             
+            intrin_rew = causal_relation.mean(dim=(-1,-2)).reshape(b, t, 1)
             # causal_relation = causal_relation.reshape(b*t, -1) # index
-            top2 = causal_relation[:,:,:2,:].reshape(b*t, -1) # b, t, n_a, n_v
-            topn_1 = causal_relation[:,:,:self.n_agents-1,:].reshape(b*t, -1) # b, t, n_a, n_v
-            src = torch.ones(b*t, self.n_agents).to(causal_relation.device)
-            
-            out = torch.zeros(b*t, self.n_agents).to(causal_relation.device)
-            top2 = torch.chunk(top2, 2 * self.n_enemies // self.n_agents + 1, dim=-1)
-            for i in range(len(top2)):
-                out.scatter_(1, top2[i], src)
-            reward_top = out.sum(-1).reshape(b, t, 1) 
-            reward_top = max(1 - t_env / self.args.anneal_speed, 0) * reward_top
+           # top2 = causal_relation[:,:,:2,:].reshape(b*t, -1) # b, t, n_a, n_v
+           # topn_1 = causal_relation[:,:,:self.n_agents-1,:].reshape(b*t, -1) # b, t, n_a, n_v
+           # src = torch.ones(b*t, self.n_agents).to(causal_relation.device)
+           # 
+           # out = torch.zeros(b*t, self.n_agents).to(causal_relation.device)
+           # top2 = torch.chunk(top2, 2 * self.n_enemies // self.n_agents + 1, dim=-1)
+           # for i in range(len(top2)):
+           #     out.scatter_(1, top2[i], src)
+           # reward_top = out.sum(-1).reshape(b, t, 1) 
+           # reward_top = max(1 - t_env / self.args.anneal_speed, 0) * reward_top
 
-            out = torch.zeros(b*t, self.n_agents).to(causal_relation.device)
-            # print(causal_relation.shape, self.n_agents)
-            topn_1 = torch.chunk(topn_1, (self.n_agents-1) * self.n_enemies // self.n_agents + 1, dim=-1)
-            # for i in range(len(causal_relation)):
-                # print(causal_relation[i].shape)
-            for i in range(len(topn_1)):
-                out.scatter_(1, topn_1[i], src)
-            penalty_last = out.sum(-1).reshape(b, t, 1)-self.n_agents
+           # out = torch.zeros(b*t, self.n_agents).to(causal_relation.device)
+           # # print(causal_relation.shape, self.n_agents)
+           # topn_1 = torch.chunk(topn_1, (self.n_agents-1) * self.n_enemies // self.n_agents + 1, dim=-1)
+           # # for i in range(len(causal_relation)):
+           #     # print(causal_relation[i].shape)
+           # for i in range(len(topn_1)):
+           #     out.scatter_(1, topn_1[i], src)
+           # penalty_last = out.sum(-1).reshape(b, t, 1)-self.n_agents
             # print(out.mean())
             
 
@@ -175,7 +176,7 @@ class CQMIX_SMAC_Learner:
             # intrin_rew = torch.ones((b*t,)).to(causal_relation.device) * (self.n_enemies*2-self.n_agents)
             # intrin_rew = intrin_rew + n_deligent_agent
             # penalty_last = out.reshape(b, t, 1)#-self.n_agents
-            print(reward_top.mean(), penalty_last.mean())
+            # print(reward_top.mean(), penalty_last.mean())
             # intrin_rew = max(1 - t_env / self.args.anneal_speed, 0) * intrin_rew
             
             
@@ -205,8 +206,8 @@ class CQMIX_SMAC_Learner:
                 target_max_qvals = self.target_mixer(target_max_qvals, batch["state"])
             # print("rewards",rewards.mean())
             # print("intrin",intrin_rew.mean()*self.args.intrin_ratio)
-            intrin_rew = reward_top * self.args.intrin_ratio + penalty_last * self.args.intrin_ratio
-            rewards_new = rewards + intrin_rew 
+            # intrin_rew = reward_top * 0 + penalty_last * self.args.intrin_ratio
+            rewards_new = rewards + intrin_rew * self.args.intrin_ratio
             if getattr(self.args, 'q_lambda', False):
                 qvals = th.gather(target_mac_out, 3, batch["actions"]).squeeze(3)
                 if self.args.mixer == "cqmix":
@@ -433,12 +434,12 @@ class Predict_Network(nn.Module):
         causal_incluences = torch.stack(causal_influences, dim=2)
         # causal_incluences_ = torch.stack(causal_influences_, dim=2)
         # b,t,2,n_variables
-        causal_relation = torch.topk(causal_incluences, k=n_agents, dim=-2)[1]
+        # causal_relation = torch.topk(causal_incluences, k=n_agents, dim=-2)[1]
         # causal_relation_ = torch.topk(causal_incluences_, k=2, dim=-2)[1]
         # print(causal_relation.shape)
         # print(causal_relation[0][0], causal_relation_[0][0])
 
-        return causal_relation
+        return causal_incluences
 
     def update(self, own_variable, other_variable, mask):
         if mask.sum() > 0:
